@@ -10,7 +10,7 @@ const header = {
 }
 
 class App extends React.Component{
-  state = { events: [] }
+    state = { events: [], date: "", title: "", imageURL: "", description: "", location: "", price: "" }
 
     componentDidMount(){
         fetch(eventsURL)
@@ -18,14 +18,21 @@ class App extends React.Component{
         .then(eventData => this.setState({events: eventData}))
     }
 
+    inputHandler = (event) => {
+      this.setState({[event.target.name]: event.target.value})
+    }
+    
+    
   render(){
+    const {date, title, imageURL, description, location, price} = this.state
+    let Events = this.state.events
     return (
       <div className="App">
         <NavBar/>
         <Switch >
           <Route path='/profile/:id' component={ProfileContainer} /> // route to the profile page
           <Route path='/details/:id' component={EventDetails} /> // route to the details of a specific event
-          <Route path='/homepage'  render={(props) => <Dashboard {...props} events={this.state.events}/>}/> // route to the dashboard that renders all of the events
+          <Route path='/homepage' render={(props) => <Dashboard {...props} event={Events} inputHandler={this.inputHandler} date={date} title={title} image={imageURL} description={description} location={location} price={price}/>}/> // route to the dashboard that renders all of the events
           <Route path='/events' component={UserEvents} events={this.state.events}/> // route to the events that the user has joined
           <Route path='/signup' component={SignUp} /> // route to the sign up page
           <Route path="/login" component={Login}/> // route to the log in page

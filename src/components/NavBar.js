@@ -2,7 +2,6 @@ import React from 'react'
 import {Navbar, NavbarBrand, Nav, NavItem, NavLink,} from 'reactstrap';
 
 class NavBar extends React.Component {
-
     render() { 
         return ( 
             <Navbar color="transparent" light expand="md">

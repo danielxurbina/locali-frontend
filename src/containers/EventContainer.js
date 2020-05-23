@@ -2,25 +2,17 @@ import React from 'react'
 import Events from './Events'
 
 class EventContainer extends React.Component{
-
-    state = {
-        events: []
+    getEventData = () => {
+        if(this.props.event){
+            return this.props.event.map(event =>  <Events attributes={event.attributes} key={event.id}/>)
+        }
     }
-
-    // getEventData = () => {
-    //     Object.keys(this.props).map(event => {
-    //         this.setState({events: event})
-    //     })
-    // }
-
     render(){
-        console.log(this.props)
-     
         return(
-        <div>
-          {/* {this.props.map(event =>  <Events {...event} key={event.id}/>)}  */}
-        </div>
-    )
+            <div>
+                {this.getEventData()}
+            </div>
+        )
     }
 }
 
