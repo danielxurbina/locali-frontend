@@ -13,36 +13,33 @@ class App extends React.Component{
     state = { 
       currentUser: null, 
       events: [], 
+      displayEvents: [],
       date: "", 
       title: "", 
       imageURL: "", 
       description: "", 
       location: "", 
-      price: 0, 
-      users: []
+      price: 0,
+      sort: "",
+      sorted: ""
     }
 
     componentDidMount(){
-        fetch(eventsURL)
-        .then(response => response.json())
-        .then(eventData => this.setState({events: eventData.data.map(event => event.attributes)}))
-        this.receiveUserData()
-    }
-
-    receiveUserData(){
-      fetch("http://localhost:3000/users")
+      fetch(eventsURL)
       .then(response => response.json())
-      .then(users => this.setState({users: users.data.map(user => user.attributes)}))
+      .then(eventData => this.setState({events: eventData.data.map(event => event.attributes)}))
     }
       
     inputHandler = (event) => {
       this.setState({[event.target.name]: event.target.value})
     }
+    
+    searchPosts = (event) => {this.setState({sort: event.target.value})}
 
-    loginSubmitHandler = (event, username) => {
-      event.preventDefault()
-      this.state.users.data.map(user => user.username === username ? this.setState({currentUser: user}) : this.props.history.push('/signup')) 
+    sortBy = (event) => {
+      this.setState({sorted: event.target.value})
     }
+
 
     submitHandler = (event) => {
       event.preventDefault()
@@ -76,20 +73,33 @@ class App extends React.Component{
     }
 
   render(){
-    console.log("state events", this.state.events)
-    console.log("Current User", this.state.currentUser)
+    let Events = this.state.events.filter(event => event.title.toLowerCase().includes(this.state.sort.toLowerCase()))
+    console.log(Events)
     const {date, title, imageURL, description, location, price} = this.state
-    let Events = this.state.events
+
+    if(this.state.sorted === "All"){
+      Events.sort((a, b) => a.user.created_at < b.user.created_at ? -1 : 1)
+    }
+    else if(this.state.sorted === "Title"){
+      Events.sort((a,b) => a.title.localeCompare(b.title))
+    }
+    else if(this.state.sorted === "Price"){
+      Events.sort((a, b) => a.price > b.price ? -1 : 1)
+    }
+    else if(this.state.sorted === "Date"){
+      Events.sort((a,b) => a.date > b.date ? -1 : 1)
+    }
+
     return (
       <div className="App">
         <NavBar/>
         <Switch >
           <Route path='/profile/:id' component={ProfileContainer} /> // route to the profile page
           <Route path='/details/:id' component={EventDetails} /> // route to the details of a specific event
-          <Route path='/homepage' render={(props) => <Dashboard {...props} event={Events} inputHandler={this.inputHandler} date={date} title={title} image={imageURL} description={description} location={location} price={price} submitHandler={this.submitHandler}/>}/> // route to the dashboard that renders all of the events
+          <Route path='/homepage' render={(props) => <Dashboard {...props} event={Events} inputHandler={this.inputHandler} date={date} title={title} image={imageURL} description={description} location={location} price={price} submitHandler={this.submitHandler} searchPosts={this.searchPosts} sortBy={this.sortBy}/>}/> 
           <Route path='/events' component={UserEvents} events={this.state.events}/> // route to the events that the user has joined
           <Route path='/signup' component={SignUp} /> // route to the sign up page
-          <Route path="/login" component={Login} loginSubmitHandler={this.loginSubmitHandler}/> // route to the log in page
+          <Route path="/login" component={Login} loginHandler={this.loginHandler}/> // route to the log in page
           <Route exact path="/" component={HomePage} /> // route to the page that renders the log in and sign up aka "homepage"
         </Switch>
       </div>
