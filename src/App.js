@@ -12,6 +12,7 @@ const header = {
 class App extends React.Component{
     state = { 
       currentUser: null, 
+      users: [],
       events: [], 
       displayEvents: [],
       date: "", 
@@ -27,7 +28,13 @@ class App extends React.Component{
     componentDidMount(){
       fetch(eventsURL)
       .then(response => response.json())
-      .then(eventData => this.setState({events: eventData.data.map(event => event.attributes)}))
+      .then(eventData => this.setState({events: eventData.data.map(event => event.attributes)}, this.receiveUserData()))
+    }
+
+    receiveUserData(){
+      fetch("http://localhost:3000/users")
+      .then(response => response.json())
+      .then(users => this.setState({users: users.data.map(user => user.attributes)}))
     }
       
     inputHandler = (event) => {
@@ -46,8 +53,7 @@ class App extends React.Component{
       let newPostOBJ = {
         type: "event",
         attributes: {
-          user: this.state.currentUser
-         ,         
+          user: this.state.currentUser,         
           location: this.state.location,
           title: this.state.title,
           date: this.state.date,
@@ -73,8 +79,8 @@ class App extends React.Component{
     }
 
   render(){
+    let currentUser = this.state.users.find(user => user.username === 'noe') //this is hard coded at the moment, once we have login figured out we can render the profile page based on finding the currentUser in users
     let Events = this.state.events.filter(event => event.title.toLowerCase().includes(this.state.sort.toLowerCase()))
-    console.log(Events)
     const {date, title, imageURL, description, location, price} = this.state
 
     if(this.state.sorted === "All"){
@@ -89,12 +95,12 @@ class App extends React.Component{
     else if(this.state.sorted === "Date"){
       Events.sort((a,b) => a.date > b.date ? -1 : 1)
     }
-
+    
     return (
       <div className="App">
         <NavBar/>
         <Switch >
-          <Route path='/profile/:id' component={ProfileContainer} /> // route to the profile page
+          <Route path='/profile/:id' render={(props) => <ProfileContainer {...props} user={currentUser}/>} /> // route to the profile page
           <Route path='/details/:id' component={EventDetails} /> // route to the details of a specific event
           <Route path='/homepage' render={(props) => <Dashboard {...props} event={Events} inputHandler={this.inputHandler} date={date} title={title} image={imageURL} description={description} location={location} price={price} submitHandler={this.submitHandler} searchPosts={this.searchPosts} sortBy={this.sortBy}/>}/> 
           <Route path='/events' component={UserEvents} events={this.state.events}/> // route to the events that the user has joined
