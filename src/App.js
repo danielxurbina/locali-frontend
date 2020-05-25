@@ -79,7 +79,7 @@ class App extends React.Component{
     }
 
   render(){
-    let currentUser = this.state.users.find(user => user.username === 'noe') //this is hard coded at the moment, once we have login figured out we can render the profile page based on finding the currentUser in users
+    let currentUser = this.state.users.find(user => user.username === 'dortha') //this is hard coded at the moment, once we have login figured out we can render the profile page based on finding the currentUser in users
     let Events = this.state.events.filter(event => event.title.toLowerCase().includes(this.state.sort.toLowerCase()))
     const {date, title, imageURL, description, location, price} = this.state
 
