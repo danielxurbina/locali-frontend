@@ -13,7 +13,8 @@ class App extends React.Component{
     state = { 
       currentUser: null, 
       users: [],
-      events: [], 
+      events: [],
+      joinedEvents: [], 
       displayEvents: [],
       date: "", 
       title: "", 
@@ -34,7 +35,13 @@ class App extends React.Component{
     receiveUserData(){
       fetch("http://localhost:3000/users")
       .then(response => response.json())
-      .then(users => this.setState({users: users.data.map(user => user.attributes)}))
+      .then(users => this.setState({users: users.data.map(user => user.attributes)}, this.receiveUserEventData()))
+    }
+
+    receiveUserEventData(){
+      fetch('http://localhost:3000/joined_events')
+      .then(response => response.json())
+      .then(joined => this.setState({ joinedEvents: joined.data.map(d => d.attributes)}))
     }
       
     inputHandler = (event) => {
@@ -79,6 +86,7 @@ class App extends React.Component{
     }
 
   render(){
+    let attending = this.state.joinedEvents.filter(je => je.user.id === 2) //once we have login figured out, we can replace hardcoded 2 with currentUser.id
     let currentUser = this.state.users.find(user => user.username === 'dortha') //this is hard coded at the moment, once we have login figured out we can render the profile page based on finding the currentUser in users
     let Events = this.state.events.filter(event => event.title.toLowerCase().includes(this.state.sort.toLowerCase()))
     const {date, title, imageURL, description, location, price} = this.state
@@ -103,7 +111,7 @@ class App extends React.Component{
           <Route path='/profile/:id' render={(props) => <ProfileContainer {...props} user={currentUser}/>} /> // route to the profile page
           <Route path='/details/:id' component={EventDetails} /> // route to the details of a specific event
           <Route path='/homepage' render={(props) => <Dashboard {...props} event={Events} inputHandler={this.inputHandler} date={date} title={title} image={imageURL} description={description} location={location} price={price} submitHandler={this.submitHandler} searchPosts={this.searchPosts} sortBy={this.sortBy}/>}/> 
-          <Route path='/events' component={UserEvents} events={this.state.events}/> // route to the events that the user has joined
+          <Route path='/events' render={(props) => <UserEvents {...props} attending={attending} />} /> // route to the events that the user has joined
           <Route path='/signup' component={SignUp} /> // route to the sign up page
           <Route path="/login" component={Login} loginHandler={this.loginHandler}/> // route to the log in page
           <Route exact path="/" component={HomePage} /> // route to the page that renders the log in and sign up aka "homepage"
