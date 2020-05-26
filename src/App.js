@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch  } from 'react-router-dom';
-import { HomePage, Dashboard, NavBar, EventDetails, UserEvents } from './components/';
+import { HomePage, Dashboard, NavBar, EventDetails, UserEvents, ProfilePage } from './components/';
 import { Login, SignUp, ProfileContainer} from './containers/'
 const eventsURL = "http://localhost:3000/events"
 const header = {
@@ -108,7 +108,7 @@ class App extends React.Component{
       <div className="App">
         <NavBar/>
         <Switch >
-          <Route path='/profile/:id' render={(props) => <ProfileContainer {...props} user={currentUser}/>} /> // route to the profile page
+          <Route path='/profile/:id' render={(props) => <ProfilePage {...props} user={currentUser}/>} /> // route to the profile page
           <Route path='/details/:id' component={EventDetails} /> // route to the details of a specific event
           <Route path='/homepage' render={(props) => <Dashboard {...props} event={Events} inputHandler={this.inputHandler} date={date} title={title} image={imageURL} description={description} location={location} price={price} submitHandler={this.submitHandler} searchPosts={this.searchPosts} sortBy={this.sortBy}/>}/> 
           <Route path='/events' render={(props) => <UserEvents {...props} attending={attending} />} /> // route to the events that the user has joined
