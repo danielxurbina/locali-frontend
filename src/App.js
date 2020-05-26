@@ -35,7 +35,7 @@ class App extends React.Component{
     receiveUserData(){
       fetch("http://localhost:3000/users")
       .then(response => response.json())
-      .then(users => this.setState({users: users.data.map(user => user.attributes)}, this.receiveUserEventData()))
+      .then(users => this.setState({users: users.data}, this.receiveUserEventData()))
     }
 
     receiveUserEventData(){
@@ -95,7 +95,7 @@ class App extends React.Component{
     //once we have login figured out, we can replace hardcoded 2 with currentUser.id
     let attending = this.state.joinedEvents.filter(je => je.user.id === 2) 
     //this is hard coded at the moment, once we have login figured out we can render the profile page based on finding the currentUser in users
-    let loggedInUser = this.state.users.find(user => user.username === this.state.currentUser) 
+    let loggedInUser = this.state.users.find(user => user.attributes.username === 'dortha') 
     console.log("inside events", this.state.events, "inside sort", this.state.sort)
     let Events = this.state.events.filter(event => event.title.toLowerCase().includes(this.state.sort.toLowerCase()))
     
