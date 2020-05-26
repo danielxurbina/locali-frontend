@@ -7,19 +7,52 @@ class Form extends React.Component {
             <div className="ui segment">
             <form className="ui form" onSubmit={this.props.submitHandler}>
               <div className="inline fields">
-                <input type="date" name="date" value={date} onChange={(event) => this.props.inputHandler(event)}/>
-                <input type="text" name="title" placeholder="Title" value={title} onChange={(event) => this.props.inputHandler(event)}/>
-                <input type="text" name="location" placeholder="Location" value={location} onChange={(event) => this.props.inputHandler(event)}/>
-                <input type="text" name="description" placeholder="Description" value={description} onChange={(event) => this.props.inputHandler(event)}/>
-                <input type="text" name="imageURL" placeholder="ImageURL" value={imageURL} onChange={(event) => this.props.inputHandler(event)}/>
-                <input type="number" name="price" placeholder="Price" value={price} onChange={(event) => this.props.inputHandler(event)}/>
+                <input 
+                type="date" 
+                name="date" 
+                value={date} 
+                onChange={(event) => this.props.inputHandler(event)}
+                />
+                <input 
+                type="text" 
+                name="title" 
+                placeholder="Title" 
+                value={title} 
+                onChange={(event) => this.props.inputHandler(event)}
+                />
+                <input 
+                type="text" 
+                name="location" 
+                placeholder="Location" 
+                value={location} 
+                onChange={(event) => this.props.inputHandler(event)}
+                />
+                <input 
+                type="text" 
+                name="description" 
+                placeholder="Description" 
+                value={description} 
+                onChange={(event) => this.props.inputHandler(event)}
+                />
+                <input 
+                type="text" 
+                name="imageURL" 
+                placeholder="ImageURL" 
+                value={imageURL} 
+                onChange={(event) => this.props.inputHandler(event)}
+                />
+                <input 
+                type="number" 
+                name="price" 
+                placeholder="Price" 
+                value={price} 
+                onChange={(event) => this.props.inputHandler(event)}
+                />
               </div>
-              <button className="ui button" type="submit">
-               Create Post
-              </button>
+              <button className="ui button" type="submit">Create Post</button>
             </form>
           </div>
-         );
+        );
     }
 }
  
