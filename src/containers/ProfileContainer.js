@@ -35,9 +35,9 @@ class ProfileContainer extends React.Component {
     handleSubmit = (event) => { //connected, need to persist to database
         event.preventDefault()
         console.log(this.state)
-        let editedUser = {
+        // let editedUser = {
             
-        }
+        // }
         // fetch('http://localhost:3000/users', {
         //     method: 'PATCH',
         //     headers: {
