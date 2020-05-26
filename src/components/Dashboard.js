@@ -11,12 +11,12 @@ class Dashboard extends React.Component {
                 <Search searchPosts={this.props.searchPosts} sortBy={this.props.sortBy}/>
                 <Form 
                 inputHandler={this.props.inputHandler} 
-                date={date} title={title} i
-                mage={imageURL}
+                date={date} title={title} 
+                image={imageURL}
                 description={description} 
                 location={location} 
                 price={price} 
-                submitHandler={this.props.submitHandler}
+                submitFormHandler={this.props.submitFormHandler}
                 />
                 <EventContainer event={this.props.event}/>
             </div>
