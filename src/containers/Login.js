@@ -11,20 +11,28 @@ class Login extends React.Component {
         this.setState({password: event.target.value})
     }
 
+    submitLoginHandler = (event, username, password) => {
+        event.preventDefault()
+        fetch("http://localhost:3000/users")
+        .then(response => response.json())
+        .then(userOBJ => userOBJ.data.filter(user => {
+          if(user.attributes.username === username && user.attributes.password === password){
+              this.props.setCurrentUser(user)
+              this.props.history.push('/homepage')
+          }
+          else if(user.attributes.username !== username && user.attributes.password !== password){
+          }
+        })
+      )}
+
     render(){
-        console.log(this.state)
         return(
             <div>
                 Sign In
-                <form onSubmit={(event) => this.props.submitLoginHandler(event, this.state.username, this.state.password)}>
+                <form onSubmit={(event) => this.submitLoginHandler(event, this.state.username, this.state.password)}>
                     <label>
                         Username:
-                        <input 
-                        type="text" 
-                        name="username" 
-                        value={this.state.username} 
-                        onChange={(event) => this.handleLogin(event)}
-                        />
+                        <input type="text" name="username" value={this.state.username} onChange={(event) => this.handleLogin(event)}/>
                     </label>
                     <label>
                         Password: 

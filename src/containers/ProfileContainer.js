@@ -34,7 +34,6 @@ class ProfileContainer extends React.Component {
 
     handleSubmit = (event) => { //connected, need to persist to database
         event.preventDefault()
-        console.log(this.state)
         // let editedUser = {
             
         // }
@@ -76,7 +75,6 @@ class ProfileContainer extends React.Component {
     
 
     render(){
-        console.log('ProfileContainer State', this.state, this.props)
         return(
             <div className='ui segment'>
                 {this.renderUser()}
