@@ -11,14 +11,14 @@ class ProfileContainer extends React.Component {
         image_url: ''
     }
 
-    // componentDidMount(){
-    //     this.setState({
-    //         name: this.props.user.name,
-    //         username: this.props.user.username,
-    //         bio: this.props.user.bio,
-    //         image_url: this.props.user.image_url
-    //     })
-    // }
+    initialSetState = () => {
+        this.setState({
+            name: this.props.user.name,
+            username: this.props.user.username,
+            bio: this.props.user.bio,
+            image_url: this.props.user.image_url
+        })
+    }
 
     toggleForm = () => {
         this.setState({
@@ -35,16 +35,28 @@ class ProfileContainer extends React.Component {
     handleSubmit = (event) => { //connected, need to persist to database
         event.preventDefault()
         console.log(this.state)
+        let editedUser = {
+            
+        }
+        // fetch('http://localhost:3000/users', {
+        //     method: 'PATCH',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Accept': 'application/json'
+        //     }, 
+        //     body: JSON.stringify({})
+        // })
     }
 
     renderUser = () => {
         if(this.props.user){
-            return <div>
+            return( <div>
             <img style={{width: 200}} src={this.props.user.image_url} alt={this.props.name}></img>
             <p>{this.props.user.name}</p>
             <p>@{this.props.user.username}</p>
             <p>{this.props.user.bio}</p>
             </div>
+            ) 
         }
     }
 
@@ -69,10 +81,13 @@ class ProfileContainer extends React.Component {
             <div className='ui segment'>
                 {this.renderUser()}
                 {this.state.isClicked ? this.renderEditForm() : ''}
-                <button onClick={this.toggleForm}>Edit Profile</button>
+                <button onClick={() => {
+                    this.initialSetState() 
+                    this.toggleForm()}}>Edit Profile</button>
             </div>
         )
     }
 }
+
 
 export default ProfileContainer
