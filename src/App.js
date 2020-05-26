@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch  } from 'react-router-dom';
-import { HomePage, Dashboard, NavBar, EventDetails, UserEvents } from './components/';
+import { HomePage, Dashboard, NavBar, EventDetails, UserEvents, ProfilePage } from './components/';
 import { Login, SignUp, ProfileContainer} from './containers/'
 const eventsURL = "http://localhost:3000/events"
 const header = {
@@ -10,14 +10,29 @@ const header = {
 }
 
 class App extends React.Component{
-    state = { currentUser: null, events: [], displayEvents: [], date: "", 
-              title: "", imageURL: "", description: "", location: "", 
-              price: 0,  sort: "", sorted: ""}
+
+    state = { 
+      currentUser: null, events: [], displayEvents: [], date: "", 
+      title: "", imageURL: "", description: "", location: "", 
+      price: 0, sort: "", sorted: "", users: [], joinedEvents: [], 
+    }
 
     componentDidMount(){
       fetch(eventsURL)
       .then(response => response.json())
-      .then(eventData => this.setState({events: eventData.data.map(event => event.attributes)}))
+      .then(eventData => this.setState({events: eventData.data.map(event => event.attributes)}, this.receiveUserData()))
+    }
+
+    receiveUserData(){
+      fetch("http://localhost:3000/users")
+      .then(response => response.json())
+      .then(users => this.setState({users: users.data.map(user => user.attributes)}, this.receiveUserEventData()))
+    }
+
+    receiveUserEventData(){
+      fetch('http://localhost:3000/joined_events')
+      .then(response => response.json())
+      .then(joined => this.setState({ joinedEvents: joined.data.map(d => d.attributes)}))
     }
       
     inputHandler = (event) => {this.setState({[event.target.name]: event.target.value})}
@@ -76,6 +91,8 @@ class App extends React.Component{
     }
 
   render(){
+    let attending = this.state.joinedEvents.filter(je => je.user.id === 2) //once we have login figured out, we can replace hardcoded 2 with currentUser.id
+    let currentUser = this.state.users.find(user => user.username === 'dortha') //this is hard coded at the moment, once we have login figured out we can render the profile page based on finding the currentUser in users
     let Events = this.state.events.filter(event => event.title.toLowerCase().includes(this.state.sort.toLowerCase()))
 
     this.sortOptions(Events)
@@ -88,9 +105,9 @@ class App extends React.Component{
       <div className="App">
         <NavBar/>
         <Switch >
-          <Route path='/profile/:id' component={ProfileContainer} /> // route to the profile page
+          <Route path='/profile/:id' render={(props) => <ProfilePage {...props} user={currentUser}/>} /> // route to the profile page
           <Route path='/details/:id' component={EventDetails} /> // route to the details of a specific event
-          <Route path='/events' component={UserEvents} events={Events}/> // route to the events that the user has joined
+          <Route path='/events' render={(props) => <UserEvents {...props} attending={attending} />} /> // route to the events that the user has joined
           <Route path='/homepage' 
             render={(props) => <Dashboard {...props} 
             event={Events} 

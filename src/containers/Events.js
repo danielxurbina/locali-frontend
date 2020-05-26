@@ -6,8 +6,8 @@ const Events = (props) => {
     const {name} = props.user
     return(
         <div>
-          <h2>{title} - Price: {price}</h2>
-            <img src={image_url} alt={title} className="events-photo"/>
+            <img style={{width: 300, height: 200}}src={image_url} alt={title}/>
+            <h3>{title} - Price: {price}</h3>
             <p>Created By: {name}</p>
             <p>Date: {date}</p>
             <p>Located at: {location}</p>

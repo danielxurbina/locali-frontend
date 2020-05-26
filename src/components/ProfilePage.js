@@ -1,11 +1,12 @@
 import React from 'react'
-import ProfileContainer from './ProfileContainer'
+import ProfileContainer from '../containers/ProfileContainer'
 
 class ProfilePage extends React.Component {
+
     render() { 
         return ( 
-            <div>Profile Page
-                <ProfileContainer />
+            <div>
+                <ProfileContainer user={this.props.user} />
             </div>
          );
     }
