@@ -11,6 +11,15 @@ class ProfileContainer extends React.Component {
         image_url: ''
     }
 
+    // componentDidMount(){
+    //     this.setState({
+    //         name: this.props.user.name,
+    //         username: this.props.user.username,
+    //         bio: this.props.user.bio,
+    //         image_url: this.props.user.image_url
+    //     })
+    // }
+
     toggleForm = () => {
         this.setState({
             isClicked: !this.state.isClicked
@@ -55,7 +64,7 @@ class ProfileContainer extends React.Component {
     
 
     render(){
-        console.log('ProfileContainer State', this.state)
+        console.log('ProfileContainer State', this.state, this.props)
         return(
             <div className='ui segment'>
                 {this.renderUser()}
