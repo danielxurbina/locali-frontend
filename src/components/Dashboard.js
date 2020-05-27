@@ -18,7 +18,7 @@ class Dashboard extends React.Component {
                 price={price} 
                 submitFormHandler={this.props.submitFormHandler}
                 />
-                <EventContainer event={this.props.event}/>
+                <EventContainer event={this.props.event} currentUser={this.props.currentUser} submitRSVP={this.props.submitRSVP}/>
             </div>
         );
     }
