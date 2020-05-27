@@ -112,6 +112,7 @@ class App extends React.Component{
 
     console.log("Current User", this.state.currentUser)
     console.log("inside app, users:", this.state.users)
+    console.log(this.state.users)
 
     const {date, title, imageURL, description, location, price} = this.state
     return (
