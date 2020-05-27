@@ -1,24 +1,32 @@
 import React from 'react'
 import EventCard from './EventCard'
+const header = {
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+}
 
 class ProfileContainer extends React.Component {
 
     state = {
         isClicked: false,
-        name: [],
-        username: [],
-        bio: '',
-        image_url: '',
-        user: null
+        id: "",
+        name: "",
+        username: "",
+        bio: "",
+        image_url: ""
     }
 
     // this will match the users id when you click on the visit button from the homepage and render the page that belongs to that user 
-    // componentDidMount(){
-    //     fetch(`http://localhost:3000/users/${this.props.match.params.id}`)
-    //     .then(response => response.json())
-    //     .then(user => this.setState({user: user}))
-    // }
+    componentDidMount(){
+        // fetch(`http://localhost:3000/users/${this.props.match.params.id}`)
+        // .then(response => response.json())
+        // .then(user => this.setState({user: user}))
+        this.setState({id: this.props.currentUser.id, name: this.props.currentUser.attributes.name, username: this.props.currentUser.attributes.username,
+                      bio: this.props.currentUser.attributes.bio, image_url: this.props.currentUser.attributes.image_url
+                    })
+    }
 
+    
 
     toggleForm = () => {
         this.setState({
@@ -37,23 +45,28 @@ class ProfileContainer extends React.Component {
         let editedUser = {
             name: this.state.name,
             bio: this.state.bio,
-            image_url: this.state.image_url    
+            image_url: this.state.image_url,
+            username: this.state.username
         }
         console.log(editedUser)
-        fetch(`http://localhost:3000/users/${parseInt(this.state.userId)}`, {
+        fetch(`http://localhost:3000/users/${parseInt(this.state.id)}`, {
             method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }, 
+            headers: header,
             body: JSON.stringify(editedUser)
         })
         .then(response => response.json())
-        .then(console.log)
+        .then(user => this.props.updateCurrentUser(user)
+        // .then(updatedUser =>  this.setState({
+        //     name: updatedUser.data.attributes.name, 
+        //     username: updatedUser.data.attributes.username, 
+        //     bio: updatedUser.data.attributes.bio, 
+        //     image_url: updatedUser.data.attributes.image_url
+        // }))
+        )
     }
 
     renderUser = () => {
-        if (this.props.user.attributes.username === 'dortha'){
+        if (this.props.user.attributes.username === this.props.currentUser.attributes.username){
             const{image_url, name, username, bio} = this.props.user.attributes
             return( <div className='ui segment'>
             <img style={{width: 200}} src={image_url} alt={this.props.user.attributes.name}></img>
@@ -82,7 +95,7 @@ class ProfileContainer extends React.Component {
     }
 
     render(){
-        let userEvents = this.props.events.filter(event => event.user_id === 2)
+        let userEvents = this.props.events.filter(event => parseInt(event.user_id) === parseInt(this.props.currentUser.id))
         return(
             <div>
                 {this.renderUser()}

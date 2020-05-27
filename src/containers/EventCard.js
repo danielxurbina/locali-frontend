@@ -1,16 +1,15 @@
 import React from 'react'
+import { useHistory } from "react-router-dom";
 
 const EventCard = (props) => {
-    console.log('EventCard', props.event)
-    
+    let history = useHistory()
+    console.log(props)
+    const {id, image_url, title} = props.event
     return(
         <div className='ui card'>
-            <img src={props.event.image_url} alt={props.event.title}></img>
-            <p>{props.event.title},  Price: {props.event.price}</p>
-            <p>Date: {props.event.date}</p>
-            <p>{props.event.description}</p>
-            <button>Edit Event</button>
-            <button>Delete Event</button>
+            <img src={image_url} alt={title}></img>
+            <p>{title}</p>
+            <button onClick={() => history.push(`/details/${id}`)}>Click For Event Details</button>
         </div>
     )
 }

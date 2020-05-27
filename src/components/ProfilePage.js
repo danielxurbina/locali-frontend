@@ -10,7 +10,7 @@ class ProfilePage extends React.Component {
        
         return ( 
             <div>
-                {this.props.users.map(user => <ProfileContainer user={user} key={user.id} events={user.attributes.events} currentUser={this.props.currentUser}/>)}
+                {this.props.users.map(user => <ProfileContainer user={user} key={user.id} events={user.attributes.events} currentUser={this.props.currentUser} updateCurrentUser={this.props.updateCurrentUser}/>)}
             </div>
          );
         }
