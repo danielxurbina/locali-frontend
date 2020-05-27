@@ -3,8 +3,11 @@ import { useHistory } from "react-router-dom";
 
 const EventCard = (props) => {
     let history = useHistory()
-    console.log(props)
-    const {id, image_url, title} = props.event
+    // let mappedEvents = props.events.map(event => event.attributes.location)
+    console.log('Events', props.event.attributes)
+    const {image_url, title } = props.event.attributes
+    const {id} = props.event
+
     return(
         <div className='ui card'>
             <img src={image_url} alt={title}></img>

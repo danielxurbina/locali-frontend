@@ -66,10 +66,9 @@ class ProfileContainer extends React.Component {
     }
 
     renderUser = () => {
-        if (this.props.user.attributes.username === this.props.currentUser.attributes.username){
-            const{image_url, name, username, bio} = this.props.user.attributes
+            const{image_url, name, username, bio} = this.props.currentUser.attributes
             return( <div className='ui segment'>
-            <img style={{width: 200}} src={image_url} alt={this.props.user.attributes.name}></img>
+            <img style={{width: 200}} src={image_url} alt={name}></img>
             <p>{name}</p>
             <p>@{username}</p>
             <p>{bio}</p>
@@ -77,7 +76,6 @@ class ProfileContainer extends React.Component {
             <button onClick={this.toggleForm}>Edit Profile</button>
             </div>
             )
-        } 
     } 
 
     renderEditForm = () => {
@@ -95,11 +93,13 @@ class ProfileContainer extends React.Component {
     }
 
     render(){
-        let userEvents = this.props.events.filter(event => parseInt(event.user_id) === parseInt(this.props.currentUser.id))
+        // let userEvents = this.props.events.filter(event => parseInt(event.user_id) === parseInt(this.props.currentUser.id))
         return(
             <div>
+                profile page
                 {this.renderUser()}
-                {userEvents.map(event => <EventCard event={event} key={event.id}/>)}     
+                {this.props.events.map(event => <EventCard event={event} key={event.id}/>)}
+                     
             </div>
         )
     }
