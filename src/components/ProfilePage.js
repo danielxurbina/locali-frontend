@@ -5,12 +5,11 @@ class ProfilePage extends React.Component {
     
 
     render() { 
-        // let array = this.props.users.map(user => user.attributes.events)
-        // const eventsArray =  [].concat(...array)
-       
+        let filteredEvents = this.props.events.filter(event => parseInt(event.attributes.user.id) === parseInt(this.props.currentUser.id))
+        console.log('Filtered', filteredEvents)
         return ( 
             <div>
-                {this.props.users.map(user => <ProfileContainer user={user} key={user.id} events={user.attributes.events} currentUser={this.props.currentUser} updateCurrentUser={this.props.updateCurrentUser}/>)}
+                <ProfileContainer events={filteredEvents} currentUser={this.props.currentUser} updateCurrentUser={this.props.updateCurrentUser}/>)}
             </div>
          );
         }
