@@ -98,8 +98,7 @@ class App extends React.Component{
     }
 
     updateCurrentUser = (user) => {
-      let findUser = this.state.users.find(userOBJ => userOBJ.id === user.data.id)
-      this.setState({currentUser: user.data, users: this.state.users.map(userOBJ => userOBJ.id === findUser.id ? findUser.data : userOBJ)})
+      this.setState({currentUser: user.data, users: this.state.users.map(userOBJ => userOBJ.id === user.id ? user.data : userOBJ)})
     }
 
     deleteEvent = (id) => {
