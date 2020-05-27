@@ -21,10 +21,11 @@ class ProfileContainer extends React.Component {
 
     initialSetState = () => {
         this.setState({
-            name: this.props.user.name,
-            username: this.props.user.username,
-            bio: this.props.user.bio,
-            image_url: this.props.user.image_url
+            name: this.props.user.attributes.name,
+            username: this.props.user.attributes.username,
+            bio: this.props.user.attributes.bio,
+            image_url: this.props.user.attributes.image_url,
+            userId: this.props.user.id
         })
     }
 
@@ -42,26 +43,31 @@ class ProfileContainer extends React.Component {
 
     handleSubmit = (event) => { //connected, need to persist to database
         event.preventDefault()
-        // let editedUser = {
-            
-        // }
-        // fetch('http://localhost:3000/users', {
-        //     method: 'PATCH',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json'
-        //     }, 
-        //     body: JSON.stringify({})
-        // })
+        let editedUser = {
+            name: this.state.name,
+            bio: this.state.bio,
+            image_url: this.state.image_url    
+        }
+        console.log(editedUser)
+        fetch(`http://localhost:3000/users/${this.state.userId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }, 
+            body: JSON.stringify(editedUser)
+        })
+        .then(response => response.json())
+        .then(console.log)
     }
 
     renderUser = () => {
         if(this.props.user){
             return( <div>
-            <img style={{width: 200}} src={this.props.user.image_url} alt={this.props.name}></img>
-            <p>{this.props.user.name}</p>
-            <p>@{this.props.user.username}</p>
-            <p>{this.props.user.bio}</p>
+            <img style={{width: 200}} src={this.props.user.attributes.image_url} alt={this.props.name}></img>
+            <p>{this.props.user.attributes.name}</p>
+            <p>@{this.props.user.attributes.username}</p>
+            <p>{this.props.user.attributes.bio}</p>
             </div>
             ) 
         }

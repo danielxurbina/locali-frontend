@@ -49,6 +49,7 @@ class App extends React.Component{
     // }
     // .map(event => event.attributes)
 
+
     // receiveUserData(){
     //   fetch("http://localhost:3000/users")
     //   .then(response => response.json())
@@ -131,6 +132,7 @@ class App extends React.Component{
     //this is hard coded at the moment, once we have login figured out we can render the profile page based on finding the currentUser in users
     let loggedInUser = this.state.users.find(user => user.username === "corinne_wiza") 
     let Events = this.state.events.filter(event => event.attributes.title.toLowerCase().includes(this.state.sort.toLowerCase()))
+
     this.sortOptions(Events)
 
     console.log("Current User", this.state.currentUser)
