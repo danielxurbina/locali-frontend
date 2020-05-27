@@ -1,33 +1,32 @@
 import React from 'react'
 import EventCard from './EventCard'
+const header = {
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+}
 
 class ProfileContainer extends React.Component {
 
     state = {
         isClicked: false,
-        name: '',
-        username: '',
-        bio: '',
-        image_url: '',
-        user: null
+        id: "",
+        name: "",
+        username: "",
+        bio: "",
+        image_url: ""
     }
 
     // this will match the users id when you click on the visit button from the homepage and render the page that belongs to that user 
-    // componentDidMount(){
-    //     fetch(`http://localhost:3000/users/${this.props.match.params.id}`)
-    //     .then(response => response.json())
-    //     .then(user => this.setState({user: user}))
-    // }
-
-    initialSetState = () => {
-        this.setState({
-            name: this.props.user.attributes.name,
-            username: this.props.user.attributes.username,
-            bio: this.props.user.attributes.bio,
-            image_url: this.props.user.attributes.image_url,
-            userId: this.props.user.id
-        })
+    componentDidMount(){
+        // fetch(`http://localhost:3000/users/${this.props.match.params.id}`)
+        // .then(response => response.json())
+        // .then(user => this.setState({user: user}))
+        this.setState({id: this.props.currentUser.id, name: this.props.currentUser.attributes.name, username: this.props.currentUser.attributes.username,
+                      bio: this.props.currentUser.attributes.bio, image_url: this.props.currentUser.attributes.image_url
+                    })
     }
+
+    
 
     toggleForm = () => {
         this.setState({
@@ -41,37 +40,45 @@ class ProfileContainer extends React.Component {
         })
     }
 
-    handleSubmit = (event) => { //connected, need to persist to database
+    handleSubmit = (event) => { //getting 404 need update method in backend
         event.preventDefault()
         let editedUser = {
             name: this.state.name,
             bio: this.state.bio,
-            image_url: this.state.image_url    
+            image_url: this.state.image_url,
+            username: this.state.username
         }
         console.log(editedUser)
-        fetch(`http://localhost:3000/users/${this.state.userId}`, {
+        fetch(`http://localhost:3000/users/${parseInt(this.state.id)}`, {
             method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }, 
+            headers: header,
             body: JSON.stringify(editedUser)
         })
         .then(response => response.json())
-        .then(console.log)
+        .then(user => this.props.updateCurrentUser(user)
+        // .then(updatedUser =>  this.setState({
+        //     name: updatedUser.data.attributes.name, 
+        //     username: updatedUser.data.attributes.username, 
+        //     bio: updatedUser.data.attributes.bio, 
+        //     image_url: updatedUser.data.attributes.image_url
+        // }))
+        )
     }
 
     renderUser = () => {
-        if(this.props.user){
-            return( <div>
-            <img style={{width: 200}} src={this.props.user.attributes.image_url} alt={this.props.name}></img>
-            <p>{this.props.user.attributes.name}</p>
-            <p>@{this.props.user.attributes.username}</p>
-            <p>{this.props.user.attributes.bio}</p>
+        if (this.props.user.attributes.username === this.props.currentUser.attributes.username){
+            const{image_url, name, username, bio} = this.props.user.attributes
+            return( <div className='ui segment'>
+            <img style={{width: 200}} src={image_url} alt={this.props.user.attributes.name}></img>
+            <p>{name}</p>
+            <p>@{username}</p>
+            <p>{bio}</p>
+            {this.state.isClicked ? this.renderEditForm() : ''}
+            <button onClick={this.toggleForm}>Edit Profile</button>
             </div>
-            ) 
-        }
-    }
+            )
+        } 
+    } 
 
     renderEditForm = () => {
         return(
@@ -86,19 +93,17 @@ class ProfileContainer extends React.Component {
             </form>
         )
     }
-    
 
     render(){
+        let userEvents = this.props.events.filter(event => parseInt(event.user_id) === parseInt(this.props.currentUser.id))
         return(
-            <div className='ui segment'>
+            <div>
                 {this.renderUser()}
-                {this.state.isClicked ? this.renderEditForm() : ''}
-                <button onClick={() => {
-                    this.initialSetState() 
-                    this.toggleForm()}}>Edit Profile</button>
+                {userEvents.map(event => <EventCard event={event} key={event.id}/>)}     
             </div>
         )
     }
 }
+
 
 export default ProfileContainer

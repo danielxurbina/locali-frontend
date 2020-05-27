@@ -5,13 +5,16 @@ class ProfilePage extends React.Component {
     
 
     render() { 
-        console.log('ProfilePage', this.props.user)
+        // let array = this.props.users.map(user => user.attributes.events)
+        // const eventsArray =  [].concat(...array)
+       
         return ( 
             <div>
-                <ProfileContainer user={this.props.user} />
+                {this.props.users.map(user => <ProfileContainer user={user} key={user.id} events={user.attributes.events} currentUser={this.props.currentUser} updateCurrentUser={this.props.updateCurrentUser}/>)}
             </div>
          );
-    }
+        }
+        
 }
  
 export default ProfilePage;
