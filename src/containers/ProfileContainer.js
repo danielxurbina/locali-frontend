@@ -8,8 +8,16 @@ class ProfileContainer extends React.Component {
         name: '',
         username: '',
         bio: '',
-        image_url: ''
+        image_url: '',
+        user: null
     }
+
+    // this will match the users id when you click on the visit button from the homepage and render the page that belongs to that user 
+    // componentDidMount(){
+    //     fetch(`http://localhost:3000/users/${this.props.match.params.id}`)
+    //     .then(response => response.json())
+    //     .then(user => this.setState({user: user}))
+    // }
 
     initialSetState = () => {
         this.setState({

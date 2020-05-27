@@ -128,7 +128,7 @@ class App extends React.Component{
     //once we have login figured out, we can replace hardcoded 2 with currentUser.id
     // let attending = this.state.joinedEvents.filter(je => je.user.id === this.state.currentUser.id) 
     //this is hard coded at the moment, once we have login figured out we can render the profile page based on finding the currentUser in users
-    let loggedInUser = this.state.users.find(user => user.username === "siobhan") 
+    let loggedInUser = this.state.users.find(user => user.username === "corinne_wiza") 
     let Events = this.state.events.filter(event => event.attributes.title.toLowerCase().includes(this.state.sort.toLowerCase()))
     this.sortOptions(Events)
 
