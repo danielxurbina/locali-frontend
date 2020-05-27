@@ -41,26 +41,6 @@ class App extends React.Component{
         joinedEvents: joinedEventOBJ.data
       }))
     }
-
-    // componentDidMount(){
-    //   fetch(eventsURL)
-    //   .then(response => response.json())
-    //   .then(eventData => this.setState({events: eventData.data}, this.receiveUserData()))
-    // }
-    // .map(event => event.attributes)
-
-
-    // receiveUserData(){
-    //   fetch("http://localhost:3000/users")
-    //   .then(response => response.json())
-    //   .then(users => this.setState({users: users.data.map(user => user.attributes)}, this.receiveUserEventData()))
-    // }
-
-    // receiveUserEventData(){
-    //   fetch('http://localhost:3000/joined_events')
-    //   .then(response => response.json())
-    //   .then(joined => this.setState({joinedEvents: joined.data.filter(event => event.user.id === this.state.currentUser.id)}))
-    // }
     
     inputHandler = (event) => {this.setState({[event.target.name]: event.target.value})}
     
@@ -123,8 +103,6 @@ class App extends React.Component{
             .then(rsvp => this.setState({joinedEvents: [...this.state.joinedEvents, rsvp.data]}))
           )
     }
-    //.then(rsvp => this.setState({joinedEvents:  this.state.joinedEvents.concat({{event}, {user}})    }))
-
 
   render(){
     //once we have login figured out, we can replace hardcoded 2 with currentUser.id
@@ -136,7 +114,6 @@ class App extends React.Component{
     this.sortOptions(Events)
 
     console.log("Current User", this.state.currentUser)
-    console.log("users events", this.state.joinedEvents)
 
     const {date, title, imageURL, description, location, price} = this.state
     return (
