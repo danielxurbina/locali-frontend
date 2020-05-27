@@ -4,10 +4,12 @@ import { Route, Switch,} from 'react-router-dom';
 import { HomePage, Dashboard, NavBar, EventDetails, UserEvents, ProfilePage } from './components/';
 import { Login, SignUp, ProfileContainer} from './containers/'
 const eventsURL = "http://localhost:3000/events"
+const joinedEventsURL = "http://localhost:3000/joined_events"
 const header = {
     "Accept": "application/json",
     "Content-Type": "application/json"
 }
+
 
 class App extends React.Component{
 
@@ -23,26 +25,42 @@ class App extends React.Component{
       sort: "", 
       sorted: "", 
       users: [], 
-      joinedEvents: [], 
+      joinedEvents: []
     }
 
     componentDidMount(){
-      fetch(eventsURL)
-      .then(response => response.json())
-      .then(eventData => this.setState({events: eventData.data.map(event => event.attributes)}, this.receiveUserData()))
+      Promise.all([
+        fetch(eventsURL),
+        fetch("http://localhost:3000/users"),
+        fetch('http://localhost:3000/joined_events')
+      ])
+      .then(([eventsResponse, usersResponse, joinedEventsResponse]) => Promise.all([eventsResponse.json(), usersResponse.json(), joinedEventsResponse.json()]))
+      .then(([eventOBJ, userOBJ, joinedEventOBJ]) => this.setState({
+        events: eventOBJ.data,
+        users: userOBJ.data.map(user => user.attributes),
+        joinedEvents: joinedEventOBJ.data
+      }))
     }
 
-    receiveUserData(){
-      fetch("http://localhost:3000/users")
-      .then(response => response.json())
-      .then(users => this.setState({users: users.data}, this.receiveUserEventData()))
-    }
+    // componentDidMount(){
+    //   fetch(eventsURL)
+    //   .then(response => response.json())
+    //   .then(eventData => this.setState({events: eventData.data}, this.receiveUserData()))
+    // }
+    // .map(event => event.attributes)
 
-    receiveUserEventData(){
-      fetch('http://localhost:3000/joined_events')
-      .then(response => response.json())
-      .then(joined => this.setState({ joinedEvents: joined.data.map(d => d.attributes)}))
-    }
+
+    // receiveUserData(){
+    //   fetch("http://localhost:3000/users")
+    //   .then(response => response.json())
+    //   .then(users => this.setState({users: users.data.map(user => user.attributes)}, this.receiveUserEventData()))
+    // }
+
+    // receiveUserEventData(){
+    //   fetch('http://localhost:3000/joined_events')
+    //   .then(response => response.json())
+    //   .then(joined => this.setState({joinedEvents: joined.data.filter(event => event.user.id === this.state.currentUser.id)}))
+    // }
     
     inputHandler = (event) => {this.setState({[event.target.name]: event.target.value})}
     
@@ -66,53 +84,68 @@ class App extends React.Component{
       fetch(eventsURL, {method: "POST", headers: header, body: JSON.stringify(newPostOBJ)})
       .then(response => response.json())
       .then(eventOBJ => 
-        fetch(`${eventsURL}/${eventOBJ.id}`)
-        .then(response => response.json())
-        .then(event => this.setState({
-              date: "", description: "", imageURL: "", location: "", title: "", price: 0, 
-              events: [...this.state.events, event.data.attributes]
-        }))
+          fetch(`${eventsURL}/${eventOBJ.id}`)
+          .then(response => response.json())
+          .then(event => this.setState({
+              date: "", 
+              description: "", 
+              imageURL: "", 
+              location: "", 
+              title: "", 
+              price: 0, 
+              events: [...this.state.events, event.data]
+          }))
       )
     }
 
     sortOptions = (Events) => {
       if(this.state.sorted === "All"){
-        Events.sort((a, b) => a.user.created_at < b.user.created_at ? -1 : 1)
+        Events.sort((a, b) => a.attributes.user.created_at < b.attributes.user.created_at ? -1 : 1)
       }
       else if(this.state.sorted === "Title"){
-        Events.sort((a,b) => a.title.localeCompare(b.title))
+        Events.sort((a,b) => a.attributes.title.localeCompare(b.attributes.title))
       }
       else if(this.state.sorted === "Price"){
-        Events.sort((a, b) => a.price > b.price ? -1 : 1)
+        Events.sort((a, b) => a.attributes.price > b.attributes.price ? -1 : 1)
       }
       else if(this.state.sorted === "Date"){
-        Events.sort((a,b) => a.date > b.date ? -1 : 1)
+        Events.sort((a,b) => a.attributes.date > b.attributes.date ? -1 : 1)
       }
+    }
+
+    submitRSVP = (id) => {
+      let rsvpOBJ = {user_id: this.props.currentUser.id, event_id: id}
+      fetch(joinedEventsURL, {
+          method: "POST",
+          headers: header,
+          body: JSON.stringify(rsvpOBJ)
+      })
+      .then(response => response.json())
+      .then(rsvp => this.setState({joinedEvents: [...this.state.joinedEvents, rsvp]}))
     }
 
 
   render(){
     //once we have login figured out, we can replace hardcoded 2 with currentUser.id
-    let attending = this.state.joinedEvents.filter(je => je.user.id === 2) 
+    // let attending = this.state.joinedEvents.filter(je => je.user.id === this.state.currentUser.id) 
     //this is hard coded at the moment, once we have login figured out we can render the profile page based on finding the currentUser in users
-    // let loggedInUser = this.state.users.find(user => user.attributes.username === 'dortha') 
-    // console.log("inside events", this.state.events, "inside sort", this.state.sort)
-    let Events = this.state.events.filter(event => event.title.toLowerCase().includes(this.state.sort.toLowerCase()))
-    
+
+    let loggedInUser = this.state.users.find(user => user.username === "siobhan") 
+    let Events = this.state.events.filter(event => event.attributes.title.toLowerCase().includes(this.state.sort.toLowerCase()))
+
     this.sortOptions(Events)
 
+    console.log("Current User", this.state.currentUser)
+   
+
     const {date, title, imageURL, description, location, price} = this.state
-
-    // console.log("Current User", this.state.currentUser)
-    // console.log("inside events", Events)
-
     return (
       <div className="App">
         <NavBar/>
         <Switch >
           <Route path='/profile/:id' render={(props) => <ProfilePage {...props} users={this.state.users} currentUser={this.state.currentUser} />} /> // route to the profile page
           <Route path='/details/:id' component={EventDetails} /> // route to the details of a specific event
-          <Route path='/events' render={(props) => <UserEvents {...props} attending={attending} />} /> // route to the events that the user has joined
+          <Route path='/events' render={(props) => <UserEvents {...props} joinedEvents={this.state.joinedEvents} currentUser={this.state.currentUser}/>} /> // route to the events that the user has joined
           <Route path='/homepage' render={(props) => <Dashboard {...props} 
             event={Events} 
             inputHandler={this.inputHandler} 
@@ -123,7 +156,10 @@ class App extends React.Component{
             location={location} 
             price={price} 
             submitFormHandler={this.submitFormHandler} 
-            searchPosts={this.searchPosts} sortBy={this.sortBy}/>}
+            searchPosts={this.searchPosts} 
+            sortBy={this.sortBy}
+            currentUser={this.state.currentUser}
+            submitRSVP={this.submitRSVP}/>}
           /> 
           <Route path='/signup' component={SignUp} /> // route to the sign up page
           <Route exact path="/login" render={(props) => <Login {...props} setCurrentUser={this.setCurrentUser}/>}/> // route to the log in page
