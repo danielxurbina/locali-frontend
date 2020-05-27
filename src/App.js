@@ -114,29 +114,29 @@ class App extends React.Component{
     }
 
     submitRSVP = (id) => {
-      let rsvpOBJ = {user_id: this.props.currentUser.id, event_id: id}
-      fetch(joinedEventsURL, {
-          method: "POST",
-          headers: header,
-          body: JSON.stringify(rsvpOBJ)
-      })
+      let rsvpOBJ = {user_id: this.state.currentUser.id, event_id: id}
+      fetch(joinedEventsURL, {method: "POST", headers: header, body: JSON.stringify(rsvpOBJ)})
       .then(response => response.json())
-      .then(rsvp => this.setState({joinedEvents: [...this.state.joinedEvents, rsvp]}))
+      .then(eventOBJ => 
+            fetch(`${joinedEventsURL}/${eventOBJ.id}`)
+            .then(response => response.json())
+            .then(rsvp => this.setState({joinedEvents: [...this.state.joinedEvents, rsvp.data]}))
+          )
     }
+    //.then(rsvp => this.setState({joinedEvents:  this.state.joinedEvents.concat({{event}, {user}})    }))
 
 
   render(){
     //once we have login figured out, we can replace hardcoded 2 with currentUser.id
     // let attending = this.state.joinedEvents.filter(je => je.user.id === this.state.currentUser.id) 
     //this is hard coded at the moment, once we have login figured out we can render the profile page based on finding the currentUser in users
-
-    let loggedInUser = this.state.users.find(user => user.username === "siobhan") 
+    let loggedInUser = this.state.users.find(user => user.username === "corinne_wiza") 
     let Events = this.state.events.filter(event => event.attributes.title.toLowerCase().includes(this.state.sort.toLowerCase()))
 
     this.sortOptions(Events)
 
     console.log("Current User", this.state.currentUser)
-   
+    console.log("users events", this.state.joinedEvents)
 
     const {date, title, imageURL, description, location, price} = this.state
     return (

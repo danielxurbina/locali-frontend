@@ -1,14 +1,18 @@
 import React from 'react'
 import UserEventDisplay from './UserEventsDisplay'
 
-const UserEventsContainer = (props) => {
-    console.log("inside UserEventsContainer", props.joinedEvents)
+class UserEventsContainer extends React.Component {
+    
+
+    render(){
+        let joinedEvents = this.props.joinedEvents.map(event => event.attributes)
+        let filteredEvents = joinedEvents.filter(event=> parseInt(event.user.id) === parseInt(this.props.currentUser.id))
         return ( 
             <div>
-              {/* {props.joinedEvents.filter((event,index) => event.user.name === props.currentUser.name ? <UserEventDisplay event={event} key={index}/> : null)} */}
-              {/* {props.joinedEvents.filter(event => event.user === props.currentUser ? console.log(event) : null)} */}
+                {filteredEvents.map((object, index) => <UserEventDisplay event={object.event} key={index} currentUser={this.props.currentUser}/>)}
             </div>
-         );
+            );
+    }
 }
  
 export default UserEventsContainer;

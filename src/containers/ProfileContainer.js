@@ -9,10 +9,15 @@ class ProfileContainer extends React.Component {
         username: [],
         bio: '',
         image_url: '',
-        userId: null,
-        events:[],
-        users: []
+        user: null
     }
+
+    // this will match the users id when you click on the visit button from the homepage and render the page that belongs to that user 
+    // componentDidMount(){
+    //     fetch(`http://localhost:3000/users/${this.props.match.params.id}`)
+    //     .then(response => response.json())
+    //     .then(user => this.setState({user: user}))
+    // }
 
 
     toggleForm = () => {
