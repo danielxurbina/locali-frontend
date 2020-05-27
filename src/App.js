@@ -143,7 +143,7 @@ class App extends React.Component{
       <div className="App">
         <NavBar/>
         <Switch >
-          <Route path='/profile/:id' render={(props) => <ProfilePage {...props} user={loggedInUser}/>} /> // route to the profile page
+          <Route path='/profile/:id' render={(props) => <ProfilePage {...props} users={this.state.users} currentUser={this.state.currentUser} />} /> // route to the profile page
           <Route path='/details/:id' component={EventDetails} /> // route to the details of a specific event
           <Route path='/events' render={(props) => <UserEvents {...props} joinedEvents={this.state.joinedEvents} currentUser={this.state.currentUser}/>} /> // route to the events that the user has joined
           <Route path='/homepage' render={(props) => <Dashboard {...props} 
