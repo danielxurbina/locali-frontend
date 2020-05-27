@@ -5,22 +5,15 @@ class ProfileContainer extends React.Component {
 
     state = {
         isClicked: false,
-        name: '',
-        username: '',
+        name: [],
+        username: [],
         bio: '',
         image_url: '',
-        userId: null
+        userId: null,
+        events:[],
+        users: []
     }
 
-    initialSetState = () => {
-        this.setState({
-            name: this.props.user.attributes.name,
-            username: this.props.user.attributes.username,
-            bio: this.props.user.attributes.bio,
-            image_url: this.props.user.attributes.image_url,
-            userId: this.props.user.id
-        })
-    }
 
     toggleForm = () => {
         this.setState({
@@ -34,7 +27,7 @@ class ProfileContainer extends React.Component {
         })
     }
 
-    handleSubmit = (event) => { //connected, need to persist to database
+    handleSubmit = (event) => { //getting 404 need update method in backend
         event.preventDefault()
         let editedUser = {
             name: this.state.name,
@@ -42,7 +35,7 @@ class ProfileContainer extends React.Component {
             image_url: this.state.image_url    
         }
         console.log(editedUser)
-        fetch(`http://localhost:3000/users/${this.state.userId}`, {
+        fetch(`http://localhost:3000/users/${parseInt(this.state.userId)}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -55,16 +48,19 @@ class ProfileContainer extends React.Component {
     }
 
     renderUser = () => {
-        if(this.props.user){
-            return( <div>
-            <img style={{width: 200}} src={this.props.user.attributes.image_url} alt={this.props.name}></img>
-            <p>{this.props.user.attributes.name}</p>
-            <p>@{this.props.user.attributes.username}</p>
-            <p>{this.props.user.attributes.bio}</p>
+        if (this.props.user.attributes.username === 'dortha'){
+            const{image_url, name, username, bio} = this.props.user.attributes
+            return( <div className='ui segment'>
+            <img style={{width: 200}} src={image_url} alt={this.props.user.attributes.name}></img>
+            <p>{name}</p>
+            <p>@{username}</p>
+            <p>{bio}</p>
+            {this.state.isClicked ? this.renderEditForm() : ''}
+            <button onClick={this.toggleForm}>Edit Profile</button>
             </div>
-            ) 
-        }
-    }
+            )
+        } 
+    } 
 
     renderEditForm = () => {
         return(
@@ -79,16 +75,13 @@ class ProfileContainer extends React.Component {
             </form>
         )
     }
-    
 
     render(){
+        let userEvents = this.props.events.filter(event => event.user_id === 2)
         return(
-            <div className='ui segment'>
+            <div>
                 {this.renderUser()}
-                {this.state.isClicked ? this.renderEditForm() : ''}
-                <button onClick={() => {
-                    this.initialSetState() 
-                    this.toggleForm()}}>Edit Profile</button>
+                {userEvents.map(event => <EventCard event={event} key={event.id}/>)}     
             </div>
         )
     }

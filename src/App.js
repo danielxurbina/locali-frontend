@@ -95,22 +95,22 @@ class App extends React.Component{
     //once we have login figured out, we can replace hardcoded 2 with currentUser.id
     let attending = this.state.joinedEvents.filter(je => je.user.id === 2) 
     //this is hard coded at the moment, once we have login figured out we can render the profile page based on finding the currentUser in users
-    let loggedInUser = this.state.users.find(user => user.attributes.username === 'dortha') 
-    console.log("inside events", this.state.events, "inside sort", this.state.sort)
+    // let loggedInUser = this.state.users.find(user => user.attributes.username === 'dortha') 
+    // console.log("inside events", this.state.events, "inside sort", this.state.sort)
     let Events = this.state.events.filter(event => event.title.toLowerCase().includes(this.state.sort.toLowerCase()))
     
     this.sortOptions(Events)
 
     const {date, title, imageURL, description, location, price} = this.state
 
-    console.log("Current User", this.state.currentUser)
+    // console.log("Current User", this.state.currentUser)
     // console.log("inside events", Events)
 
     return (
       <div className="App">
         <NavBar/>
         <Switch >
-          <Route path='/profile/:id' render={(props) => <ProfilePage {...props} user={loggedInUser}/>} /> // route to the profile page
+          <Route path='/profile/:id' render={(props) => <ProfilePage {...props} users={this.state.users} currentUser={this.state.currentUser} />} /> // route to the profile page
           <Route path='/details/:id' component={EventDetails} /> // route to the details of a specific event
           <Route path='/events' render={(props) => <UserEvents {...props} attending={attending} />} /> // route to the events that the user has joined
           <Route path='/homepage' render={(props) => <Dashboard {...props} 
