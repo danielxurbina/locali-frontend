@@ -12,9 +12,11 @@ class UserEventsDisplay extends React.Component{
                 <p>Date: {date}</p>
                 <p>Located at: {location}</p>
                 <p>{description}</p>
+                
             </div>
             )    
     }
 }
 
 export default UserEventsDisplay
+

@@ -1,0 +1,65 @@
+.SignUpLayout {
+    width: 100%;
+    font-family: "Gotham Rounded";
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .SignUpImg {
+    width: 730px;
+    height: 650px;
+    background-image: url("https://visitkochijapan.com/image/rendering/issue_page_image/27/trim.4000/4000/2000?v=7475df0b5abc962b9d42654e25c36f15e7af3554");
+    float: right;
+  }
+
+  .LogInImg {
+    width: 730px;
+    height: 650px;
+    background-image: url("https://visitkochijapan.com/image/rendering/issue_page_image/27/trim.4000/4000/2000?v=7475df0b5abc962b9d42654e25c36f15e7af3554");
+    float: left;
+  }
+  
+  .SignUpForm {
+    float: left;
+    width: 455px;
+    padding: 19px 71px 36px 72px;
+    background: #fafafa;
+  }
+  .SignUpForm h3 {
+    text-align: center;
+    font-size: 32px;
+    margin: 30px 0 9px;
+    letter-spacing: -1.96px;
+    color: #3b2652;
+    font-weight: 300;
+  }
+  .SignUpForm h3 b {
+    font-weight: 500;
+  }
+  
+  .SignUpForm label {
+    display: block;
+    font-size: 18px;
+    letter-spacing: -0.86px;
+    line-height: 20px;
+    padding: 20px 0 12px 0;
+    font-weight: 500;
+    color: #3b2652;
+  }
+  
+  .SignUpForm .SignUpTextBox {
+    width: 350px;
+    border: 2px solid #d5d5d5;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 17px 0 16px 17px;
+  }
+  
+  .btnSignUp {
+    background: black;
+    color: #fff;
+    font-size: 14px;
+    width: 120px;
+    height: 40px;
+    border: none;
+  }

@@ -2,8 +2,6 @@ import React from 'react'
 import ProfileContainer from '../containers/ProfileContainer'
 
 class ProfilePage extends React.Component {
-    
-
     render() { 
         let filteredEvents = this.props.events.filter(event => parseInt(event.attributes.user.id) === parseInt(this.props.currentUser.id))
         // console.log('Filtered', filteredEvents)

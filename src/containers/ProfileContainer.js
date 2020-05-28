@@ -1,9 +1,11 @@
 import React from 'react'
+import "./CardGroup.scss";
 import EventCard from './EventCard'
 const header = {
     "Accept": "application/json",
     "Content-Type": "application/json"
 }
+
 
 class ProfileContainer extends React.Component {
 
@@ -54,8 +56,8 @@ class ProfileContainer extends React.Component {
 
     renderUser = () => {
             const{image_url, name, username, bio} = this.props.currentUser.attributes
-            return( <div className='ui segment'>
-            <img style={{width: 200}} src={image_url} alt={name}></img>
+            return( <div>
+            <img src={image_url} alt={name}></img>
             <p>{name}</p>
             <p>@{username}</p>
             <p>{bio}</p>
@@ -81,8 +83,9 @@ class ProfileContainer extends React.Component {
 
     render(){
         return(
-            <div>
-                {this.renderUser()}
+            
+            <div className="CardGroup">
+                <div>{this.renderUser()}</div>
                 {this.props.events.map(event => <EventCard event={event} key={event.id}/>)}
             </div>
         )
