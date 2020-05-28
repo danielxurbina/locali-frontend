@@ -1,40 +1,27 @@
 import React from 'react'
-import "./CardGroup.scss";
 import EventCard from './EventCard'
 const header = {
     "Accept": "application/json",
     "Content-Type": "application/json"
 }
 
-
 class ProfileContainer extends React.Component {
 
-    state = {
-        isClicked: false,
-        id: "",
-        name: "",
-        username: "",
-        bio: "",
-        image_url: ""
-    }
+    state = {isClicked: false, id: "", name: "", username: "", bio: "", image_url: ""}
 
     componentDidMount(){
-        this.setState({id: this.props.currentUser.id, name: this.props.currentUser.attributes.name, username: this.props.currentUser.attributes.username,
-                      bio: this.props.currentUser.attributes.bio, image_url: this.props.currentUser.attributes.image_url
-                    })
-    }
-
-    toggleForm = () => {
         this.setState({
-            isClicked: !this.state.isClicked
+            id: this.props.currentUser.id, 
+            name: this.props.currentUser.attributes.name, 
+            username: this.props.currentUser.attributes.username,
+            bio: this.props.currentUser.attributes.bio, 
+            image_url: this.props.currentUser.attributes.image_url
         })
     }
 
-    handleFormChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
+    toggleForm = () => {this.setState({isClicked: !this.state.isClicked})}
+
+    handleFormChange = (event) => {this.setState({[event.target.name]: event.target.value})}
 
     handleSubmit = (event) => {
         event.preventDefault()
@@ -55,16 +42,17 @@ class ProfileContainer extends React.Component {
     
 
     renderUser = () => {
-            const{image_url, name, username, bio} = this.props.currentUser.attributes
-            return( <div>
-            <img src={image_url} alt={name}></img>
-            <p>{name}</p>
-            <p>@{username}</p>
-            <p>{bio}</p>
-            {this.state.isClicked ? this.renderEditForm() : ''}
-            <button onClick={this.toggleForm}>Edit Profile</button>
+        const{image_url, name, username, bio} = this.props.currentUser.attributes
+        return( 
+            <div>
+                <img src={image_url} alt={name}></img>
+                <p>{name}</p>
+                <p>@{username}</p>
+                <p>{bio}</p>
+                {this.state.isClicked ? this.renderEditForm() : ''}
+                <button onClick={this.toggleForm}>Edit Profile</button>
             </div>
-            )
+        )
     } 
 
     renderEditForm = () => {
@@ -83,14 +71,16 @@ class ProfileContainer extends React.Component {
 
     render(){
         return(
-            
-            <div className="CardGroup">
-                <div>{this.renderUser()}</div>
-                {this.props.events.map(event => <EventCard event={event} key={event.id}/>)}
+            <div className="container-fluid d-flex justify-content-center">
+            <div className="row">
+                <div className="col-md-4">
+                    {this.renderUser()}
+                    {this.props.events.map(event => <EventCard event={event} key={event.id}/>)}
+                </div>
+            </div>
             </div>
         )
     }
 }
-
 
 export default ProfileContainer
