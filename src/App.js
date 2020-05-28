@@ -10,7 +10,6 @@ const header = {
     "Content-Type": "application/json"
 }
 
-
 class App extends React.Component{
 
     state = { 
@@ -82,7 +81,7 @@ class App extends React.Component{
         Events.sort((a, b) => a.attributes.price > b.attributes.price ? -1 : 1)
       }
       else if(this.state.sorted === "Date"){
-        Events.sort((a,b) => a.attributes.date > b.attributes.date ? -1 : 1)
+        Events.sort((a,b) => a.attributes.date > b.attributes.date ? 1 : -1)
       }
     }
 
@@ -101,22 +100,50 @@ class App extends React.Component{
       this.setState({currentUser: user.data, users: this.state.users.map(userOBJ => userOBJ.id === user.id ? user.data : userOBJ)})
     }
 
+    // editUserEvent = (event) => {
+    //   console.log('EditedEvent', event)
+    //   let updatedEvent = this.state.events.map(eventObj => eventObj.id === event.id )
+    //   this.setState({events: this.state.events.map(eventOBJ => eventOBJ.id === event.id ? event.data : eventOBJ)})
+    // }
+
+    updateEvent = (event, date, title, location, description, image_url, price, id) => {
+      event.preventDefault()
+      let editedEvent = {
+          location: location,
+          title: title,
+          date: date,
+          description: description,
+          image_url: image_url,
+          price: price
+      }
+      fetch(`http://localhost:3000/events/${id}`, {
+          method: 'PATCH',
+          headers: header,
+          body: JSON.stringify(editedEvent)
+      })
+      .then(response => response.json())
+      .then(event => {
+        let updatedEvent = this.state.events.map(eventObj => {
+          return eventObj.id === id ? event.data : eventObj
+        })
+        // console.log('Updated Event App', updatedEvent)
+        this.setState({events: updatedEvent})
+      })
+  }
+
     deleteEvent = (id) => {
       this.setState({events: this.state.events.filter(event => event.id !== id)})
       fetch(`${eventsURL}/${id}`, {method: 'DELETE'}).then(response => response.json())
   }
 
   render(){
-    //once we have login figured out, we can replace hardcoded 2 with currentUser.id
-    // let attending = this.state.joinedEvents.filter(je => je.user.id === this.state.currentUser.id) 
-    //this is hard coded at the moment, once we have login figured out we can render the profile page based on finding the currentUser in users
+    // console.log('Events', this.state.events, 'sorted', this.state.sorted)
     let Events = this.state.events.filter(event => event.attributes.title.toLowerCase().includes(this.state.sort.toLowerCase()))
-
     this.sortOptions(Events)
-
-    console.log("Current User", this.state.currentUser)
-    console.log("inside app, users:", this.state.users)
-    console.log(this.state.users)
+    // console.log('State Events', Events)
+    // console.log("Current User", this.state.currentUser)
+    // console.log("inside app, users:", this.state.users)
+    // console.log(this.state.users)
 
     const {date, title, imageURL, description, location, price} = this.state
     return (
@@ -124,7 +151,7 @@ class App extends React.Component{
         <NavBar/>
         <Switch >
           <Route path='/profile/:id' render={(props) => <ProfilePage {...props} users={this.state.users} events={Events} currentUser={this.state.currentUser} updateCurrentUser={this.updateCurrentUser}/>} /> // route to the profile page
-          <Route path='/details/:id' render={(props) => <EventDetails {...props} currentUser={this.state.currentUser} deleteEvent={this.deleteEvent}/>} /> // route to the details of a specific event
+          <Route path='/details/:id' render={(props) => <EventDetails {...props} currentUser={this.state.currentUser} deleteEvent={this.deleteEvent} updateEvent={this.updateEvent} date={date} imageURL={imageURL} description={description} title={title} price={price} location={location}  /> } /> // route to the details of a specific event
           <Route path='/events' render={(props) => <UserEvents {...props} joinedEvents={this.state.joinedEvents} currentUser={this.state.currentUser}/>} /> // route to the events that the user has joined
           <Route path='/homepage' render={(props) => <Dashboard {...props} 
             event={Events} 
