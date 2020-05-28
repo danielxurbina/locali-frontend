@@ -15,11 +15,9 @@ const Events = (props) => {
             <p>Located at: {location}</p>
             <p>{description}</p>
             <button onClick={() => props.submitRSVP(props.event.id)}>RSVP</button>
-            {/* it goes to the profile page but renders the wrong user */}
             <button onClick={() => history.push(`/profile/${id}`)}>Vist {name} </button>
         </div>
     )
 }
 
 export default Events
-

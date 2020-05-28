@@ -7,11 +7,10 @@ class ProfilePage extends React.Component {
         // console.log('Filtered', filteredEvents)
         return ( 
             <div>
-                <ProfileContainer events={filteredEvents} currentUser={this.props.currentUser} updateCurrentUser={this.props.updateCurrentUser}/>)}
+                <ProfileContainer events={filteredEvents} currentUser={this.props.currentUser} updateCurrentUser={this.props.updateCurrentUser}/>
             </div>
          );
-        }
-        
+    }
 }
  
 export default ProfilePage;

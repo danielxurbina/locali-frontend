@@ -1,6 +1,5 @@
 import React from 'react'
 import { useHistory } from "react-router-dom";
-import "./Card.scss";
 
 const EventCard = (props) => {
     let history = useHistory()
@@ -8,11 +7,15 @@ const EventCard = (props) => {
     const {id} = props.event
 
     return(
-        <a className="Card">
-        <img src={image_url} />
-        <h3>{title}</h3>
-        <button onClick={() => history.push(`/details/${id}`)}>Click For Event Details</button>
-        </a>
+        <div className='card text-center shadow'>
+            <div className ='overflow'>
+                <img className="events-page-image" src={image_url} alt={title}/>
+            </div>
+            <div className='card-body text-dark'>
+                <h4 className='card-title'>{title}</h4>
+                <button className="btn btn-outline-success" onClick={() => history.push(`/details/${id}`)}>Event Details</button>
+            </div>
+        </div>
     )
 }
 
@@ -25,3 +28,10 @@ export default EventCard
         //     <p>{title}</p>
         //     <button onClick={() => history.push(`/details/${id}`)}>Click For Event Details</button>
         // </div>
+
+        //second format
+        // <a className="Card">
+        // <img src={image_url} />
+        // <h3>{title}</h3>
+        // <button onClick={() => history.push(`/details/${id}`)}>Click For Event Details</button>
+        // </a>
