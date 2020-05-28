@@ -80,13 +80,10 @@ class ProfileContainer extends React.Component {
     }
 
     render(){
-        // let userEvents = this.props.events.filter(event => parseInt(event.user_id) === parseInt(this.props.currentUser.id))
         return(
             <div>
-                profile page
                 {this.renderUser()}
                 {this.props.events.map(event => <EventCard event={event} key={event.id}/>)}
-                     
             </div>
         )
     }
