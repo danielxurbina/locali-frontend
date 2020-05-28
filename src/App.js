@@ -100,12 +100,6 @@ class App extends React.Component{
       this.setState({currentUser: user.data, users: this.state.users.map(userOBJ => userOBJ.id === user.id ? user.data : userOBJ)})
     }
 
-    // editUserEvent = (event) => {
-    //   console.log('EditedEvent', event)
-    //   let updatedEvent = this.state.events.map(eventObj => eventObj.id === event.id )
-    //   this.setState({events: this.state.events.map(eventOBJ => eventOBJ.id === event.id ? event.data : eventOBJ)})
-    // }
-
     updateEvent = (event, date, title, location, description, image_url, price, id) => {
       event.preventDefault()
       let editedEvent = {
@@ -145,6 +139,7 @@ class App extends React.Component{
     // console.log("inside app, users:", this.state.users)
     // console.log(this.state.users)
 
+
     const {date, title, imageURL, description, location, price} = this.state
     return (
       <div className="App">
@@ -169,7 +164,7 @@ class App extends React.Component{
             submitRSVP={this.submitRSVP}/>}
           /> 
           <Route path='/signup' component={SignUp} /> // route to the sign up page
-          <Route exact path="/login" render={(props) => <Login {...props} setCurrentUser={this.setCurrentUser}/>}/> // route to the log in page
+          <Route exact path="/login" render={(props) => <Login {...props} setCurrentUser={this.setCurrentUser}/>}/> 
           <Route exact path="/" component={HomePage} /> // route to the page that renders the log in and sign up aka "homepage"
         </Switch>
       </div>

@@ -1,12 +1,10 @@
 import React from 'react'
-import "../styles.css";
+import "./event-details.css";
 const eventsURL = "http://localhost:3000/events";
 const header = {
     "Accept": "application/json",
     "Content-Type": "application/json"
 }
-
-
 
 class EventDetails extends React.Component {
     
@@ -46,8 +44,6 @@ class EventDetails extends React.Component {
         })
     }
 
-
-
     renderEditForm = () => {
         // console.log('Updated State', this.state)
         const {date, title, location, description, image_url, price, eventId} = this.state
@@ -85,11 +81,10 @@ class EventDetails extends React.Component {
                 {this.state.isClicked ? this.renderEditForm() : ''}
                 <button onClick={this.toggleForm}>Edit Event</button>
                 <button value="Delete" onClick={() => this.props.deleteEvent(this.state.eventId)}>Delete Event</button>
+                </div>
+                <button onClick={() => this.props.history.push('/homepage')}>Go Back To Homepage</button>
             </div>
-            <button onClick={() => this.props.history.push('/homepage')}>Go Back To Homepage</button>
-            </div>
-        )
-        
+        )       
     }
 
     render() { 
@@ -102,3 +97,7 @@ class EventDetails extends React.Component {
 }
  
 export default EventDetails;
+
+
+
+
