@@ -6,7 +6,7 @@ class EventContainer extends React.Component{
 
     render(){
         return(
-            <div>{this.props.event.map((event)=> <Events event={event} key={event.id} submitRSVP={this.props.submitRSVP}/>)}</div>
+            <div className='ui grid container'>{this.props.event.map((event)=> <Events event={event} key={event.id} submitRSVP={this.props.submitRSVP}/>)}</div>
         )
     }
 }

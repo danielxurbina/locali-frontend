@@ -7,7 +7,7 @@ class Dashboard extends React.Component {
     render() { 
         const {date, title, imageURL, description, location, price} = this.props
         return (  
-            <div>
+            <div style={{marginTop: 30}}>
                 <Search searchPosts={this.props.searchPosts} sortBy={this.props.sortBy}/>
                 <Form 
                 inputHandler={this.props.inputHandler} 
