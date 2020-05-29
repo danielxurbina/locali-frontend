@@ -7,15 +7,16 @@
   
   .SignUpImg {
     width: 730px;
-    height: 600px;
-    background-image: url("https://visitkochijapan.com/image/rendering/issue_page_image/27/trim.4000/4000/2000?v=7475df0b5abc962b9d42654e25c36f15e7af3554");
+    height: 748px;
+    background-image: url("https://d36tnp772eyphs.cloudfront.net/blogs/1/2018/10/Fall-in-Arayashima.jpg");
     float: right;
+    
   }
 
   .LogInImg {
     width: 730px;
-    height: 650px;
-    background-image: url("https://visitkochijapan.com/image/rendering/issue_page_image/27/trim.4000/4000/2000?v=7475df0b5abc962b9d42654e25c36f15e7af3554");
+    height: 748px;
+    background-image: url("https://media.holidayme.com/wp-content/uploads/2019/09/holidayme_JapanAutumnSeason_Mount_Fuji_shutterstock_1321286417.jpg");
     float: left;
   }
   
@@ -25,6 +26,7 @@
     padding: 19px 71px 36px 72px;
     background: #fafafa;
   }
+
   .SignUpForm h3 {
     text-align: center;
     font-size: 32px;
@@ -52,11 +54,11 @@
     border: 2px solid #d5d5d5;
     border-radius: 3px;
     font-size: 16px;
-    padding: 17px 0 16px 17px;
+    padding: 17px 0px 16px 17px;
   }
   
   .btnSignUp {
-    background: black;
+    background: #e79e85;
     color: #fff;
     font-size: 14px;
     width: 120px;

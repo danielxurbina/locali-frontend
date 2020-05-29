@@ -1,5 +1,6 @@
 import React from 'react'
 import UserEventDisplay from './UserEventsDisplay'
+import './card-style.css';
 
 class UserEventsContainer extends React.Component {
     
