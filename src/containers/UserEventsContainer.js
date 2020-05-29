@@ -8,7 +8,7 @@ class UserEventsContainer extends React.Component {
     render(){
         let joinedEvents = this.props.joinedEvents.map(event => event.attributes)
         let filteredEvents = joinedEvents.filter(event=> parseInt(event.user.id) === parseInt(this.props.currentUser.id))
-        return ( 
+        return (
             <div className="container-fluid d-flex justify-content-center">
                 <div className="row">
                     <div className="col-md-4">

@@ -1,0 +1,4 @@
+.eventContainer-grid {
+    display: grid;
+    grid-template-rows: 50% 50%
+}

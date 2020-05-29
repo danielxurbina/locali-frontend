@@ -1,5 +1,6 @@
 import React from 'react'
 import { useHistory } from "react-router-dom";
+import './card-style.css'
 
 const EventCard = (props) => {
     let history = useHistory()
@@ -13,7 +14,7 @@ const EventCard = (props) => {
             </div>
             <div className='card-body text-dark'>
                 <h4 className='card-title'>{title}</h4>
-                <button className="btn btn-outline-success" onClick={() => history.push(`/details/${id}`)}>Event Details</button>
+                <button className="button button-outline-success" onClick={() => history.push(`/details/${id}`)}>Event Details</button>
             </div>
         </div>
     )
