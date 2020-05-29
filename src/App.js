@@ -142,6 +142,7 @@ class App extends React.Component{
 
     const {date, title, imageURL, description, location, price} = this.state
     return (
+      
       <div className="App">
         <NavBar/>
         <Switch >

@@ -7,7 +7,7 @@ class HomePage extends React.Component {
             <div>
                 <div>LOCALI</div>
             </div>
-         );
+         )
     }
 }
  
