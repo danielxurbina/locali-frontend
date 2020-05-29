@@ -83,8 +83,10 @@ class EventDetails extends React.Component {
         const { date, description, image_url, price, title, location} = this.state.event.attributes
         const {name} = this.state.event.attributes.user
         return (
-            <div className="event-details-page" style={{marginTop: 30}}>
+            <div className="event-details-page" style={{marginTop: 30, }}>
+                <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
                 <img className="events-photo" src={image_url} alt={title} style={{ height: 375, width: 500, marginBottom: 25}}/>
+                </div>
                 <div className="page-info">
                 <h2>{title}</h2>
                 <div style={{fontSize: 15}}>Created By: {name}</div>
