@@ -1,0 +1,95 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    background-color: #f8f9fb;
+  }
+  
+  .ads-c-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 3rem;
+    background: linear-gradient(to right, #250056, #0076ae);
+    color: white;
+    font-size: 1rem;
+    line-height: 1.5;
+    box-sizing: border-box;
+    padding: 0 6rem;
+    white-space: nowrap;
+  }
+  
+  .ads-c-navbar__navbar-brand {
+    display: flex;
+    align-items: center;
+    margin-right: 84px
+  }
+  
+  .ads-c-navbar__navbar-brand-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  .ads-c-navbar__brand-logo {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.75rem;
+  }
+  
+  .ads-c-navbar__navbar-menu-items {
+    display: flex;
+    list-style-type: none;
+    margin-left: 0px;
+    padding-left: 0;
+  }
+  
+  .ads-c-navbar__navbar-menu-item {
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: flex-start;
+    line-height: 1.5;
+  }
+  
+  .ads-c-navbar__navbar-menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+  
+  
+  
+  .ads-c-navbar__navbar-actions {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+  
+  .ads-c-navbar__navbar-actions-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 3rem;
+  }
+  
+  .ads-c-navbar--fixed {
+
+  }
+  
+  .polyfill {
+    fill: #fff;
+  }
+  
+  .polyfill-opaque {
+    fill: #fff;
+    opacity: 0.5;
+  }
+  .test-body {
+    margin-top: 80px;
+    padding: 3rem 6rem;
+  }
+  

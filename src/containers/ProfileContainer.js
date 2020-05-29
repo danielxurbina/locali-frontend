@@ -53,21 +53,35 @@ class ProfileContainer extends React.Component {
                 <p>@{username}</p>
                 <p>{bio}</p>
                 {this.state.isClicked ? this.renderEditForm() : ''}
-                <button onClick={this.toggleForm}>Edit Profile</button>
+                <br></br>
+                <button className='ui button' onClick={this.toggleForm}>Edit Profile</button>
+                <br></br>
+                <br></br>
+                <br></br>
             </div>
         )
     } 
 
     renderEditForm = () => {
         return(
-            <form onSubmit={(event) => this.handleSubmit(event)}>
-                <label>Edit Profile Info:
-                <input type='text' name='name' placeholder='Change Name' value={this.state.name} onChange={this.handleFormChange}></input>
-                <input type='text' name='username' placeholder='Change Username' value={this.state.username} onChange={this.handleFormChange}></input>
-                <input type='text' name='bio' placeholder='Edit Bio' value={this.state.bio} onChange={this.handleFormChange}></input>
-                <input type='text' name='image_url' placeholder='Update Profile Picture' value={this.state.image_url} onChange={this.handleFormChange}></input>
-                <button>Submit Changes</button>
-                </label>
+            <form className="ui form" onSubmit={(event) => this.handleSubmit(event)}>
+                <div className='filed'>
+                    <label>Name</label>
+                    <input type='text' name='name' placeholder='Change Name' value={this.state.name} onChange={this.handleFormChange}></input>
+                </div>
+                <div className='field'>
+                    <label>Username</label>
+                    <input type='text' name='username' placeholder='Change Username' value={this.state.username} onChange={this.handleFormChange}></input>
+                </div>
+                <div className='field'>
+                    <label>Bio</label>
+                    <input type='text' name='bio' placeholder='Edit Bio' value={this.state.bio} onChange={this.handleFormChange}></input>
+                </div>
+                <div className='field'>
+                    <label>Image</label>
+                    <input type='text' name='image_url' placeholder='Update Profile Picture' value={this.state.image_url} onChange={this.handleFormChange}></input>
+                </div>
+                <button className='ui button'>Submit Changes</button>
             </form>
         )
     }
