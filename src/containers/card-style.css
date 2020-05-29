@@ -49,3 +49,12 @@ body{
     height:auto;
     
   }
+
+.button-outline-success{
+  color: #e79e85;
+  border-color: #e79e85;
+}
+
+.button-outline-success:hover{
+  background-color: #f2e9d0
+}

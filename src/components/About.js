@@ -8,9 +8,8 @@ class About extends React.Component {
          <div className="row">
             <div className="three columns">
                <img className="profile-pic"  src="https://ca.slack-edge.com/T02MD9XTF-UTV12LVL6-54082a1d620c-512" alt="" />
-               <img className="profile-pic"  src="https://ca.slack-edge.com/T02MD9XTF-URUPJ4A9H-cc8ebbaf4e79-512" alt="" />
             </div>
-
+            <img className="profile-pic"  src="https://ca.slack-edge.com/T02MD9XTF-URUPJ4A9H-cc8ebbaf4e79-512" alt="" />
             <div className="nine-columns main-col">
                <h2 className="description-title">Meet the creators</h2>
                <p className="description">

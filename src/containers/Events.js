@@ -9,9 +9,9 @@ const Events = (props) => {
     let history = useHistory()
     return(
         <div className='ui four wide column'>
-            <div className='ui card' style={{height: 600}}>
+            <div className='ui card' style={{height: 615}}>
                 <div className='image'>
-                    <img style={{height: 300}} src={image_url} alt={title}/>
+                    <img style={{height: 260}} src={image_url} alt={title}/>
                  </div>
                 <h3>{title} - Price: {price}</h3>
                 <p>Created By: {name}</p>
