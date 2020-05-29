@@ -45,33 +45,35 @@ class EventDetails extends React.Component {
         const {date, title, location, description, image_url, price, eventId} = this.state
     
         return(
-            <form className='ui form' onSubmit={(event) => this.props.updateEvent(event, date, title, location, description, image_url, price, eventId )}>
-                <div className='field'>
-                    <label>Date</label>
-                    <input type="date" name="date" value={date} onChange={(event) => this.handleFormChange(event)}/>
-                </div>
-                <div className='field'>
-                    <label>Title</label>
-                    <input type="text" name="title" placeholder="Title" value={title} onChange={(event) => this.handleFormChange(event)}/>
-                </div>
-                <div className='field'>
-                    <label>Location</label>
-                    <input type="text" name="location" placeholder="Location" value={location} onChange={(event) => this.handleFormChange(event)}/>
-                </div>
-                <div className='field'>
-                    <label>Description</label>
-                    <input type="text" name="description" placeholder="Description" value={description} onChange={(event) => this.handleFormChange(event)}/>
-                </div>
-                <div className='field'>
-                    <label>Image</label>
-                    <input type="text" name="imageURL" placeholder="ImageURL" value={image_url} onChange={(event) => this.handleFormChange(event)}/>
-                </div>
-                <div className='field'>
-                    <label>Price</label>
-                    <input type="number" name="price" placeholder="Price" value={price} onChange={(event) => this.handleFormChange(event)}/>
-                </div>
-                <button className='ui button'>Submit Changes</button>
-            </form>
+            <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <form className='ui form' onSubmit={(event) => this.props.updateEvent(event, date, title, location, description, image_url, price, eventId )}>
+                    <div className='field' style={{width: 300}}>
+                        <label>Date</label>
+                        <input type="date" name="date" value={date} onChange={(event) => this.handleFormChange(event)}/>
+                    </div>
+                    <div className='field' style={{width: 300}}>
+                        <label>Title</label>
+                        <input type="text" name="title" placeholder="Title" value={title} onChange={(event) => this.handleFormChange(event)}/>
+                    </div>
+                    <div className='field'style={{width: 300}}>
+                        <label>Location</label>
+                        <input type="text" name="location" placeholder="Location" value={location} onChange={(event) => this.handleFormChange(event)}/>
+                    </div>
+                    <div className='field' style={{width: 300}}>
+                        <label>Description</label>
+                        <input type="text" name="description" placeholder="Description" value={description} onChange={(event) => this.handleFormChange(event)}/>
+                    </div>
+                    <div className='field' style={{width: 300}}>
+                        <label>Image</label>
+                        <input type="text" name="imageURL" placeholder="ImageURL" value={image_url} onChange={(event) => this.handleFormChange(event)}/>
+                    </div>
+                    <div className='field' style={{width: 300}}>
+                        <label>Price</label>
+                        <input type="number" name="price" placeholder="Price" value={price} onChange={(event) => this.handleFormChange(event)}/>
+                    </div>
+                    <button className='ui button'>Submit Changes</button>
+                </form>
+            </div>
         )
     }
 
