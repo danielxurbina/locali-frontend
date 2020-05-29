@@ -1,10 +1,7 @@
 import React from 'react'
 import "./event-details.css";
 const eventsURL = "http://localhost:3000/events";
-const header = {
-    "Accept": "application/json",
-    "Content-Type": "application/json"
-}
+
 
 class EventDetails extends React.Component {
     
@@ -45,20 +42,35 @@ class EventDetails extends React.Component {
     }
 
     renderEditForm = () => {
-        // console.log('Updated State', this.state)
         const {date, title, location, description, image_url, price, eventId} = this.state
     
         return(
-            <form onSubmit={(event) => this.props.updateEvent(event, date, title, location, description, image_url, price, eventId )}>
-                <label>Edit Event:
-                <input type="date" name="date" value={date} onChange={(event) => this.handleFormChange(event)}/>
-                <input type="text" name="title" placeholder="Title" value={title} onChange={(event) => this.handleFormChange(event)}/>
-                <input type="text" name="location" placeholder="Location" value={location} onChange={(event) => this.handleFormChange(event)}/>
-                <input type="text" name="description" placeholder="Description" value={description} onChange={(event) => this.handleFormChange(event)}/>
-                <input type="text" name="imageURL" placeholder="ImageURL" value={image_url} onChange={(event) => this.handleFormChange(event)}/>
-                <input type="number" name="price" placeholder="Price" value={price} onChange={(event) => this.handleFormChange(event)}/>
-                <button>Submit Changes</button>
-                </label>
+            <form className='ui form' onSubmit={(event) => this.props.updateEvent(event, date, title, location, description, image_url, price, eventId )}>
+                <div className='field'>
+                    <label>Date</label>
+                    <input type="date" name="date" value={date} onChange={(event) => this.handleFormChange(event)}/>
+                </div>
+                <div className='field'>
+                    <label>Title</label>
+                    <input type="text" name="title" placeholder="Title" value={title} onChange={(event) => this.handleFormChange(event)}/>
+                </div>
+                <div className='field'>
+                    <label>Location</label>
+                    <input type="text" name="location" placeholder="Location" value={location} onChange={(event) => this.handleFormChange(event)}/>
+                </div>
+                <div className='field'>
+                    <label>Description</label>
+                    <input type="text" name="description" placeholder="Description" value={description} onChange={(event) => this.handleFormChange(event)}/>
+                </div>
+                <div className='field'>
+                    <label>Image</label>
+                    <input type="text" name="imageURL" placeholder="ImageURL" value={image_url} onChange={(event) => this.handleFormChange(event)}/>
+                </div>
+                <div className='field'>
+                    <label>Price</label>
+                    <input type="number" name="price" placeholder="Price" value={price} onChange={(event) => this.handleFormChange(event)}/>
+                </div>
+                <button className='ui button'>Submit Changes</button>
             </form>
         )
     }
@@ -79,10 +91,13 @@ class EventDetails extends React.Component {
                 <div>Located at: {location}</div>
                 <div>{description}</div>
                 {this.state.isClicked ? this.renderEditForm() : ''}
-                <button onClick={this.toggleForm}>Edit Event</button>
-                <button value="Delete" onClick={() => this.props.deleteEvent(this.state.eventId)}>Delete Event</button>
+                <br></br>
+                <button className='ui button' onClick={this.toggleForm}>Edit Event</button>
+                <button className='ui button' value="Delete" onClick={() => this.props.deleteEvent(this.state.eventId)}>Delete Event</button>
+                <br></br>
                 </div>
-                <button onClick={() => this.props.history.push('/homepage')}>Go Back To Homepage</button>
+                <br></br>
+                <button className='ui button' onClick={() => this.props.history.push('/homepage')}>Go Back To Homepage</button>
             </div>
         )       
     }
