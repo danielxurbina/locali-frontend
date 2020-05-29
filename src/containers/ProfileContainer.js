@@ -102,13 +102,12 @@ class ProfileContainer extends React.Component {
                </Box>
        
                <Box  gridArea="main">
-               <div className="container-fluid d-flex justify-content-center">
-                <div className="row">
-                <div className="col-md-4">
-                    
-                    {this.props.events.map(event => <EventCard event={event} key={event.id}/>)}
-                </div>
-                </div>
+                 <div className="container-fluid d-flex justify-content-center">
+                    <div className="row">
+                        <div className="col-md-4">
+                            {this.props.events.map(event => <EventCard event={event} key={event.id}/>)}
+                        </div>
+                    </div>
                  </div>
                </Box>
              </Grid>

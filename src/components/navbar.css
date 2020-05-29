@@ -1,20 +1,10 @@
-* {
-    box-sizing: border-box;
-  }
-  
-  body {
-    margin: 0;
-    font-family: "Montserrat", sans-serif;
-    background-color: #f8f9fb;
-  }
-  
   .ads-c-navbar {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     height: 3rem;
-    background: linear-gradient(to right, #250056, #0076ae);
-    color: white;
+    background: linear-gradient(to right, #e79e85, #f2e9d0);
+    color: #fff;
     font-size: 1rem;
     line-height: 1.5;
     box-sizing: border-box;
@@ -43,6 +33,7 @@
   }
   
   .ads-c-navbar__navbar-menu-items {
+      
     display: flex;
     list-style-type: none;
     margin-left: 0px;
@@ -50,6 +41,7 @@
   }
   
   .ads-c-navbar__navbar-menu-item {
+    color: #fff;
     padding: 0.75rem 1rem;
     display: flex;
     justify-content: flex-start;
@@ -63,21 +55,23 @@
   
   
   .ads-c-navbar__navbar-actions {
+    color: #fff;
     display: flex;
     align-items: center;
     margin-left: auto;
   }
   
   .ads-c-navbar__navbar-actions-item {
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 3rem;
     width: 3rem;
   }
-  
-  .ads-c-navbar--fixed {
 
+  .material-icons {
+      color: #fff;
   }
   
   .polyfill {

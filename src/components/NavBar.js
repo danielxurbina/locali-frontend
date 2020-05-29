@@ -1,8 +1,8 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+// import {NavLink} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import "./navbar.css";
-import {Navbar, NavbarBrand, Nav, NavItem} from 'reactstrap';
+// import {Navbar, NavbarBrand, Nav, NavItem} from 'reactstrap';
 
 class NavBar extends React.Component {
     render() { 
