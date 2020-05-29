@@ -6,10 +6,10 @@ class ProfilePage extends React.Component {
         let filteredEvents = this.props.events.filter(event => parseInt(event.attributes.user.id) === parseInt(this.props.currentUser.id))
         return ( 
             <div>
-                <ProfileContainer events={filteredEvents} currentUser={this.props.currentUser} updateCurrentUser={this.props.updateCurrentUser}/>}
+                <ProfileContainer events={filteredEvents} currentUser={this.props.currentUser} updateCurrentUser={this.props.updateCurrentUser}/>
             </div>
          );
     }
 }
- 
+
 export default ProfilePage;

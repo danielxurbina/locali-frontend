@@ -7,7 +7,7 @@ const EventCard = (props) => {
     const {id} = props.event
 
     return(
-        <div className='card text-center shadow'>
+        <div className='card text-center shadow' style={{margin: 15}}>
             <div className ='overflow'>
                 <img className="events-page-image" src={image_url} alt={title}/>
             </div>
