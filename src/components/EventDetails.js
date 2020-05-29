@@ -83,15 +83,19 @@ class EventDetails extends React.Component {
         const { date, description, image_url, price, title, location} = this.state.event.attributes
         const {name} = this.state.event.attributes.user
         return (
-            <div className="event-details-page">
-                <img className="events-photo" src={image_url} alt={title}/>
+            <div className="event-details-page" style={{marginTop: 30}}>
+                <img className="events-photo" src={image_url} alt={title} style={{ height: 375, width: 500, marginBottom: 25}}/>
                 <div className="page-info">
                 <h2>{title}</h2>
-                <div>Created By: {name}</div>
-                <div>Price: {price}</div>
-                <div>Date: {date}</div>
-                <div>Located at: {location}</div>
-                <div>{description}</div>
+                <div style={{fontSize: 15}}>Created By: {name}</div>
+                <br></br>
+                <div style={{fontSize: 15}}>Price: {price}</div>
+                <br></br>
+                <div style={{fonstSize: 15}}>Date: {date}</div>
+                <br></br>
+                <div style={{fonstSize: 15}}>Located at: {location}</div>
+                <br></br>
+                <div style={{fonstSize: 15, marginRight: 400, marginLeft: 400}}>{description}</div>
                 {this.state.isClicked ? this.renderEditForm() : ''}
                 <br></br>
                 <button className='ui button' onClick={this.toggleForm}>Edit Event</button>
@@ -99,14 +103,12 @@ class EventDetails extends React.Component {
                 <br></br>
                 </div>
                 <br></br>
-                <button className='ui button' onClick={() => this.props.history.push('/homepage')}>Go Back To Homepage</button>
+                <button className='ui button' style={{marginBottom: 25}} onClick={() => this.props.history.push('/homepage')}>Go Back To Homepage</button>
             </div>
         )       
     }
 
     render() { 
-        // console.log('EventDetails Event State', this.state.event)
-        // console.log('Event ID', this.state.eventId)
         return ( 
             this.state.event ? this.renderEvent() : <div> this event doesn't exist </div>
          );
