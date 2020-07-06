@@ -1,18 +1,18 @@
 import React from 'react'
 import "../styles.css";
-import { useHistory } from "react-router-dom";
-import { Grid } from 'grommet';
+// import { useHistory } from "react-router-dom";
+// import { Grid } from 'grommet';
 
 const Events = (props) => {
     const {title, date, description, image_url, price, location} = props.event.attributes
     const {name, id} = props.event.attributes.user
-    let history = useHistory()
+    // let history = useHistory()
     return(
         <div className='ui four wide column'>
             <div className='ui card' style={{height: 615}}>
                 <div className='image'>
                     <img style={{height: 260}} src={image_url} alt={title}/>
-                 </div>
+                </div>
                 <h3>{title} - Price: {price}</h3>
                 <p>Created By: {name}</p>
                 <p>Date: {date}</p>
