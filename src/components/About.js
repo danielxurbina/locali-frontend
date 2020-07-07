@@ -13,8 +13,7 @@ class About extends React.Component {
             <div className="nine-columns main-col">
                <h2 className="description-title">Meet the creators</h2>
                <p className="description">
-                  Hello! Our name is Kelly and Daniel and we created Locali for those to find events 
-                  to join. You can create an event or RSVP to an event, so you no longer have to worry about
+                  Hello! Our names are Kelly and Daniel and we created Locali to serve as a fun environment to find and join in local events. You can create an event or RSVP to an event, so you no longer have to worry about
                   missing out! We thank you for visiting our project, enjoy! :)
                </p>
             </div>

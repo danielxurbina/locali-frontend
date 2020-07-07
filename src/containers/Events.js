@@ -5,8 +5,7 @@ import "../styles.css";
 
 const Events = (props) => {
     const {title, date, description, image_url, price, location} = props.event.attributes
-    const {name, id} = props.event.attributes.user
-    // let history = useHistory()
+    const {name} = props.event.attributes.user
     return(
         <div className='ui four wide column'>
             <div className='ui card' style={{height: 615}}>
@@ -19,7 +18,6 @@ const Events = (props) => {
                 <p>Located at: {location}</p>
                 <p>{description}</p>
                 <button className="ui basic button" onClick={() => props.submitRSVP(props.event.id)}>Click To RSVP</button>
-                {/* <button className='ui button' onClick={() => history.push(`/profile/${id}`)}>Vist {name} </button> */}
             </div>
         </div> 
     )

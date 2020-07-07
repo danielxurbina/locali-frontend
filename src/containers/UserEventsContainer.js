@@ -18,11 +18,3 @@ class UserEventsContainer extends React.Component {
  
 export default UserEventsContainer;
 
-//prior to me doing grid
-{/* <div className="container-fluid d-flex justify-content-center">
-<div className="row">
-    <div className="col-md-4">
-        {filteredEvents.map((object, index) => <UserEventDisplay event={object.event} key={index} currentUser={this.props.currentUser}/>)}
-    </div>
-</div>
-</div> */}
