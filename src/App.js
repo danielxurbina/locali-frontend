@@ -10,6 +10,16 @@ const header = {
     "Content-Type": "application/json"
 }
 
+//To Do
+//user should be able to remove an rsvp
+//past events will not show on dashboard
+//past events will show as previously attended on user events page
+//fix error that occurs if user tries to visit events tab prior to login(TypeError cannot read id property of null)
+  //I believe converting to hooks will fix this.
+//have form field for url clear out after submission
+//actually be able to create an account
+//convert entire project using hooks and context
+
 class App extends React.Component{
 
     state = { 
