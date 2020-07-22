@@ -24,7 +24,7 @@ class Login extends React.Component {
               this.props.history.push('/homepage')
           }
           else if(user.attributes.username !== username && user.attributes.password !== password){
-            alert('wrong credentials')
+            return
           }
         })
       )}
@@ -46,6 +46,7 @@ class Login extends React.Component {
                 <input type="password" className="SignUpTextBox" name="password" placeholder="Password" value={this.state.password} onChange={(event) => this.handlePassword(event)}/> 
                 <p className ="space this shit"> </p>
                 <button className="btnSignUp" type="submit" value="Submit">Sign In</button>
+                <button className="btnSignUp" type="sign up" value="Sign Up" onClick={() => this.props.history.push('/signup')}>Sign Up</button>
               </form>
             </div>
           </div>

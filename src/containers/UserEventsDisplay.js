@@ -25,14 +25,4 @@ class UserEventsDisplay extends React.Component{
 }
 
 export default UserEventsDisplay
-            
-            // original format
-            // <div>
-            //     <img src={image_url} alt={title}/>
-            //     <h4 className='card-title'>{title} - Price: {price}</h4>
-            //     <p>Date: {date}</p>
-            //     <p>Located at: {location}</p>
-            //     <p>{description}</p>
-                
-            // </div>
 
