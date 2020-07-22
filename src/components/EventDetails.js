@@ -77,7 +77,7 @@ class EventDetails extends React.Component {
         )
     }
 
- 
+
 
     renderEvent = () => {
         const { date, description, image_url, price, title, location} = this.state.event.attributes
@@ -113,10 +113,10 @@ class EventDetails extends React.Component {
     render() { 
         return ( 
             this.state.event ? this.renderEvent() : <div> this event doesn't exist </div>
-         );
+        );
     }
 }
- 
+
 export default EventDetails;
 
 

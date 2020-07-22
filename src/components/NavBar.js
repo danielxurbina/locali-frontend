@@ -2,7 +2,7 @@ import React from 'react'
 // import {NavLink} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import "./navbar.css";
-// import {Navbar, NavbarBrand, Nav, NavItem} from 'reactstrap';
+
 
 class NavBar extends React.Component {
     render() { 
@@ -56,7 +56,7 @@ class NavBar extends React.Component {
         );
     }
 }
- 
+
 export default NavBar;
 
 {/* <Navbar color="transparent" light expand="md" bg="light">

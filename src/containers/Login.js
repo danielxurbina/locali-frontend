@@ -2,7 +2,9 @@ import React from 'react'
 import "./SignUp.css";
 
 class Login extends React.Component {
-    state = {username: "", password: ""}
+    state = {
+      username: "", 
+      password: ""}
 
     handleLogin = (event) => {
         this.setState({username: event.target.value})

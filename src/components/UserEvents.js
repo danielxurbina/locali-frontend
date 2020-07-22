@@ -8,7 +8,7 @@ class UserEvents extends React.Component {
             <div>
                 <UserEventsContainer joinedEvents={this.props.joinedEvents} currentUser={this.props.currentUser}/>
             </div>
-         );
+        );
     }
 }
  

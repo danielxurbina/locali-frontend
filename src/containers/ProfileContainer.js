@@ -10,7 +10,14 @@ const header = {
 
 class ProfileContainer extends React.Component {
 
-    state = {isClicked: false, id: "", name: "", username: "", bio: "", image_url: ""}
+    state = {
+        isClicked: false, 
+        id: "", 
+        name: "", 
+        username: "", 
+        bio: "", 
+        image_url: ""
+    }
 
     componentDidMount(){
         this.setState({
@@ -88,30 +95,29 @@ class ProfileContainer extends React.Component {
 
     render(){
         return(
-             <Grommet full theme={grommet}>
-             <Grid
-               rows={["xxsmall", "medium", "xsmall"]}
-               columns={["1/4", "3/4"]}
-               areas={[
-                 ["sidebar", "main"]
-               ]}
-               gap="small"
-             >
-               <Box gridArea="sidebar">
-                    {this.renderUser()}
-               </Box>
-       
-               <Box  gridArea="main">
-                 <div className="container-fluid d-flex justify-content-center">
+        <Grommet full theme={grommet}>
+            <Grid
+                rows={["xxsmall", "medium", "xsmall"]}
+                columns={["1/4", "3/4"]}
+                areas={[
+                    ["sidebar", "main"]
+                ]}
+                gap="small"
+            >
+            <Box gridArea="sidebar">
+                {this.renderUser()}
+            </Box>
+            <Box  gridArea="main">
+                <div className="container-fluid d-flex justify-content-center">
                     <div className="row">
                         <div className="col-md-4">
                             {this.props.events.map(event => <EventCard event={event} key={event.id}/>)}
                         </div>
                     </div>
-                 </div>
-               </Box>
-             </Grid>
-           </Grommet>
+                </div>
+            </Box>
+            </Grid>
+        </Grommet>
         )
     }
 }

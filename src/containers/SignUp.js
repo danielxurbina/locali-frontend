@@ -1,6 +1,7 @@
 import React from 'react'
 import "./SignUp.css";
 
+//no functionality yet
 class SignUp extends React.Component {
     render(){
         return(

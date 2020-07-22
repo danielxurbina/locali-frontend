@@ -8,7 +8,7 @@ class ProfilePage extends React.Component {
             <div>
                 <ProfileContainer events={filteredEvents} currentUser={this.props.currentUser} updateCurrentUser={this.props.updateCurrentUser}/>
             </div>
-         );
+        );
     }
 }
 

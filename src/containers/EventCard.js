@@ -21,18 +21,3 @@ const EventCard = (props) => {
 }
 
 export default EventCard
-
-
-        // Original Code
-        // <div className='ui card'>
-        //     <img src={image_url} alt={title}></img>
-        //     <p>{title}</p>
-        //     <button onClick={() => history.push(`/details/${id}`)}>Click For Event Details</button>
-        // </div>
-
-        //second format
-        // <a className="Card">
-        // <img src={image_url} />
-        // <h3>{title}</h3>
-        // <button onClick={() => history.push(`/details/${id}`)}>Click For Event Details</button>
-        // </a>

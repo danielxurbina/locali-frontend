@@ -1,7 +1,6 @@
 import React from 'react'
 import "../styles.css";
-// import { useHistory } from "react-router-dom";
-// import { Grid } from 'grommet';
+
 
 const Events = (props) => {
     const {title, date, description, image_url, price, location} = props.event.attributes
