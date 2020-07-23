@@ -2,8 +2,16 @@ import React from 'react'
 import './card-style.css';
 
 class UserEventsDisplay extends React.Component{
+    
+    findEvent = (id) => {
+        let notRSVP = this.props.joinedEvents.filter(je => je.attributes.event.id === id)
+        let eventId = notRSVP.map(rsvp => rsvp.id)
+        let joinedEventId = eventId.pop()
+        this.props.removeRSVP(joinedEventId)
+    }
+
     render(){
-        const {title, date, description, image_url, price, location} = this.props.event
+        const {title, date, description, image_url, price, location, id, user_id} = this.props.event
         return(
             <div className='ui four wide column'>
                 <div className='ui card' style={{marginTop: 30}}>
@@ -16,7 +24,7 @@ class UserEventsDisplay extends React.Component{
                         <p className='card-text text-secondary'>Date: {date}</p>
                         <p className='card-text text-secondary'>Located at: {location}</p>
                         <p className='card-text text-secondary'>{description}</p>
-                        <button>Remove RSVP</button>
+                        <button onClick={() => this.findEvent(id)}>Remove RSVP</button>
                     </div>
                 </div>
             </div>

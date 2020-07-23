@@ -6,7 +6,7 @@ class UserEvents extends React.Component {
     render() { 
         return ( 
             <div>
-                <UserEventsContainer joinedEvents={this.props.joinedEvents} currentUser={this.props.currentUser}/>
+                <UserEventsContainer joinedEvents={this.props.joinedEvents} currentUser={this.props.currentUser} removeRSVP={this.props.removeRSVP}/>
             </div>
         );
     }

@@ -106,6 +106,14 @@ class App extends React.Component{
           )
     }
 
+    removeRSVP = (id) => {
+      let events = this.state.joinedEvents.filter(je => je.id !== id)
+      this.setState({joinedEvents: events})
+      fetch(`http://localhost:3000/joined_events/${id}`, {
+        method: 'DELETE'
+      })
+    }
+
     updateCurrentUser = (user) => {
       this.setState({currentUser: user.data, users: this.state.users.map(userOBJ => userOBJ.id === user.id ? user.data : userOBJ)})
     }
@@ -132,12 +140,12 @@ class App extends React.Component{
         })
         this.setState({events: updatedEvent})
       })
-  }
+    }
 
     deleteEvent = (id) => {
       this.setState({events: this.state.events.filter(event => event.id !== id)})
       fetch(`${eventsURL}/${id}`, {method: 'DELETE'}).then(response => response.json())
-  }
+    }
 
   render(){
     let Events = this.state.events.filter(event => event.attributes.title.toLowerCase().includes(this.state.sort.toLowerCase()))
@@ -148,9 +156,26 @@ class App extends React.Component{
       <div className="App">
         <NavBar/>
         <Switch >
-          <Route path='/profile/:id' render={(props) => <ProfilePage {...props} users={this.state.users} events={Events} currentUser={this.state.currentUser} updateCurrentUser={this.updateCurrentUser}/>} /> {/* route to the profile page*/}
-          <Route path='/details/:id' render={(props) => <EventDetails {...props} currentUser={this.state.currentUser} deleteEvent={this.deleteEvent} updateEvent={this.updateEvent} date={date} imageURL={imageURL} description={description} title={title} price={price} location={location}  /> } /> {/*route to the details of a specific event*/}
-          <Route path='/events' render={(props) => <UserEvents {...props} joinedEvents={this.state.joinedEvents} currentUser={this.state.currentUser}/>} /> {/*route to the events that the user has joined*/}
+          <Route path='/profile/:id' render={(props) => <ProfilePage {...props} 
+            users={this.state.users} 
+            events={Events} 
+            currentUser={this.state.currentUser} 
+            updateCurrentUser={this.updateCurrentUser}/>} 
+          /> {/* route to the profile page*/}
+          <Route path='/details/:id' render={(props) => <EventDetails {...props} 
+            currentUser={this.state.currentUser} 
+            deleteEvent={this.deleteEvent} 
+            updateEvent={this.updateEvent} 
+            date={date} imageURL={imageURL} 
+            description={description} 
+            title={title} price={price} 
+            location={location}  /> } 
+          /> {/*route to the details of a specific event*/}
+          <Route path='/events' render={(props) => <UserEvents {...props} 
+            joinedEvents={this.state.joinedEvents} 
+            currentUser={this.state.currentUser} 
+            removeRSVP={this.removeRSVP}/>} 
+          /> {/*route to the events that the user has joined*/}
           <Route path='/homepage' render={(props) => <Dashboard {...props} 
             event={Events} 
             inputHandler={this.inputHandler} 

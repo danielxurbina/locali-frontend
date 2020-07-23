@@ -10,7 +10,7 @@ class UserEventsContainer extends React.Component {
         let filteredEvents = joinedEvents.filter(event=> parseInt(event.user.id) === parseInt(this.props.currentUser.id))
         return (
             <div className="ui grid container">
-                {filteredEvents.map((object, index) => <UserEventDisplay event={object.event} key={index} currentUser={this.props.currentUser}/>)}
+                {filteredEvents.map((object, index) => <UserEventDisplay event={object.event} key={index} currentUser={this.props.currentUser} removeRSVP={this.props.removeRSVP} joinedEvents={this.props.joinedEvents}/>)}
             </div>
             );
     }
