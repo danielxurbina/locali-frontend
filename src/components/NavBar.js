@@ -17,7 +17,7 @@ class NavBar extends React.Component {
                 rel="stylesheet"
               /> 
               <nav className="ads-c-navbar ads-c-navbar--fixed">
-                <section className="ads-c-navbar__navbar-brand">
+              <Link to='/' ><section className="ads-c-navbar__navbar-brand">
                   <span className="ads-c-navbar__navbar-brand-icon">
                     <svg
                       className="ads-c-navbar__brand-logo"
@@ -32,7 +32,7 @@ class NavBar extends React.Component {
                     </svg>
                   </span>
                   <span className="ads-c-navbar__navbar-brand-title">LOCALI</span>
-                </section>
+                </section></Link>
                 {this.props.currentUser === null ?
                 <>
                 <section className="ads-c-navbar__navbar-menu">
