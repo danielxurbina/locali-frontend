@@ -11,7 +11,6 @@ const header = {
 }
 
 //To Do
-//user should be able to remove an rsvp
 //past events will not show on dashboard
 //past events will show as previously attended on user events page
 //fix error that occurs if user tries to visit events tab prior to login(TypeError cannot read id property of null)
@@ -154,7 +153,7 @@ class App extends React.Component{
     return (
       
       <div className="App">
-        <NavBar/>
+        <NavBar currentUser={this.state.currentUser}/>
         <Switch >
           <Route path='/profile/:id' render={(props) => <ProfilePage {...props} 
             users={this.state.users} 
@@ -193,7 +192,7 @@ class App extends React.Component{
           /> 
           <Route path='/signup' component={SignUp} /> {/*route to the sign up page */}
           <Route exact path="/login" render={(props) => <Login {...props} setCurrentUser={this.setCurrentUser}/>}/> 
-          <Route exact path="/" component={HomePage} /> {/* route to the page that renders the log in and sign up aka "homepage"*/}
+          <Route exact path="/" component={HomePage} /> 
         </Switch>
       </div>
     );
