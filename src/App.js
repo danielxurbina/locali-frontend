@@ -9,12 +9,18 @@ const header = {
     "Accept": "application/json",
     "Content-Type": "application/json"
 }
+const today = new Date()
+const year = today.getFullYear()
+const month = (today.getMonth() +1).toString().padStart(2, '0')
+const day = today.getDate()
+const currentDate = `${year}-${month}-${day}`
+console.log(typeof(currentDate))
+console.log(typeof(month))
+
 
 //To Do
-//past events will not show on dashboard
+//to compare dates must be in this format "2020-06-05"
 //past events will show as previously attended on user events page
-//fix error that occurs if user tries to visit events tab prior to login(TypeError cannot read id property of null)
-  //I believe converting to hooks will fix this.
 //have form field for url clear out after submission
 //actually be able to create an account
 //convert entire project using hooks and context
@@ -23,7 +29,8 @@ class App extends React.Component{
 
     state = { 
       currentUser: null, 
-      events: [], 
+      events: [],
+      pastEvents: [], 
       date: "", 
       title: "", 
       imageURL: "", 
@@ -40,12 +47,13 @@ class App extends React.Component{
       Promise.all([fetch(eventsURL),fetch("http://localhost:3000/users"),fetch('http://localhost:3000/joined_events')])
       .then(([eventsResponse, usersResponse, joinedEventsResponse]) => Promise.all([eventsResponse.json(), usersResponse.json(), joinedEventsResponse.json()]))
       .then(([eventOBJ, userOBJ, joinedEventOBJ]) => this.setState({
-        events: eventOBJ.data,
+        events: eventOBJ.data.filter(event => event.attributes.date > currentDate),
+        pastEvents: eventOBJ.data.filter(event => event.attributes.date < currentDate),
         users: userOBJ.data,
         joinedEvents: joinedEventOBJ.data
       }))
-    }
-    
+    } 
+
     inputHandler = (event) => {this.setState({[event.target.name]: event.target.value})}
     searchPosts = (event) => {this.setState({sort: event.target.value})}
     sortBy = (event) => {this.setState({sorted: event.target.value})}
@@ -151,6 +159,9 @@ class App extends React.Component{
     }
 
   render(){
+    console.log('Events', this.state.events)
+    console.log(currentDate)
+    console.log('Past Events', this.state.pastEvents)
     let Events = this.state.events.filter(event => event.attributes.title.toLowerCase().includes(this.state.sort.toLowerCase()))
     this.sortOptions(Events)
     const {date, title, imageURL, description, location, price} = this.state
