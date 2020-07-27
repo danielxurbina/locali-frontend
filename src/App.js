@@ -3,19 +3,16 @@ import './App.css';
 import { Route, Switch,} from 'react-router-dom';
 import { HomePage, Dashboard, NavBar, EventDetails, UserEvents, ProfilePage } from './components/';
 import { Login, SignUp} from './containers/'
-const eventsURL = "http://localhost:3000/events"
-const joinedEventsURL = "http://localhost:3000/joined_events"
-const header = {
-    "Accept": "application/json",
-    "Content-Type": "application/json"
-}
 const today = new Date()
 const year = today.getFullYear()
 const month = (today.getMonth() +1).toString().padStart(2, '0')
 const day = today.getDate()
 const currentDate = `${year}-${month}-${day}`
-console.log(typeof(currentDate))
-console.log(typeof(month))
+const URL = "http://localhost:3000/"
+const header = {
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+}
 
 
 //To Do
@@ -44,7 +41,7 @@ class App extends React.Component{
     }
 
     componentDidMount(){
-      Promise.all([fetch(eventsURL),fetch("http://localhost:3000/users"),fetch('http://localhost:3000/joined_events')])
+      Promise.all([fetch(`${URL}/events`),fetch(`${URL}/users`),fetch(`${URL}/joined_events`)])
       .then(([eventsResponse, usersResponse, joinedEventsResponse]) => Promise.all([eventsResponse.json(), usersResponse.json(), joinedEventsResponse.json()]))
       .then(([eventOBJ, userOBJ, joinedEventOBJ]) => this.setState({
         events: eventOBJ.data.filter(event => event.attributes.date > currentDate),
@@ -70,10 +67,10 @@ class App extends React.Component{
           image_url: this.state.imageURL,
           price: this.state.price
       }
-      fetch(eventsURL, {method: "POST", headers: header, body: JSON.stringify(newPostOBJ)})
+      fetch(`${URL}/events`, {method: "POST", headers: header, body: JSON.stringify(newPostOBJ)})
       .then(response => response.json())
       .then(eventOBJ => 
-          fetch(`${eventsURL}/${eventOBJ.id}`)
+          fetch(`${URL}/events/${eventOBJ.id}`)
           .then(response => response.json())
           .then(event => this.setState({
               date: "", 
@@ -104,10 +101,10 @@ class App extends React.Component{
 
     submitRSVP = (id) => {
       let rsvpOBJ = {user_id: this.state.currentUser.id, event_id: id}
-      fetch(joinedEventsURL, {method: "POST", headers: header, body: JSON.stringify(rsvpOBJ)})
+      fetch(`${URL}/joined_events`, {method: "POST", headers: header, body: JSON.stringify(rsvpOBJ)})
       .then(response => response.json())
       .then(eventOBJ => 
-            fetch(`${joinedEventsURL}/${eventOBJ.id}`)
+            fetch(`${URL}/joined_events/${eventOBJ.id}`)
             .then(response => response.json())
             .then(rsvp => this.setState({joinedEvents: [...this.state.joinedEvents, rsvp.data]}))
           )
@@ -116,7 +113,7 @@ class App extends React.Component{
     removeRSVP = (id) => {
       let events = this.state.joinedEvents.filter(je => je.id !== id)
       this.setState({joinedEvents: events})
-      fetch(`http://localhost:3000/joined_events/${id}`, {
+      fetch(`${URL}/joined_events/${id}`, {
         method: 'DELETE'
       })
     }
@@ -139,7 +136,7 @@ class App extends React.Component{
           image_url: image_url,
           price: price
       }
-      fetch(`http://localhost:3000/events/${id}`, {
+      fetch(`${URL}/events/${id}`, {
           method: 'PATCH',
           headers: header,
           body: JSON.stringify(editedEvent)
@@ -155,7 +152,7 @@ class App extends React.Component{
 
     deleteEvent = (id) => {
       this.setState({events: this.state.events.filter(event => event.id !== id)})
-      fetch(`${eventsURL}/${id}`, {method: 'DELETE'}).then(response => response.json())
+      fetch(`${URL}/events/${id}`, {method: 'DELETE'}).then(response => response.json())
     }
 
   render(){
