@@ -48,10 +48,11 @@ class NavBar extends React.Component {
                   <ul className="ads-c-navbar__navbar-menu-items">
                     <Link to="/homepage"><li className="ads-c-navbar__navbar-menu-item">Homepage</li></Link>
                     <Link to="/events"><li className="ads-c-navbar__navbar-menu-item">Events</li></Link>
+                    <Link to="/"><li className="ads-c-navbar__navbar-menu-item" onClick={this.props.handleLogout}>Logout</li></Link>
                   </ul>
                 </section>
                 <section className="ads-c-navbar__navbar-actions">
-                  <div className="ads-c-navbar__navbar-actions-item">  
+                  <div className="ads-c-navbar__navbar-actions-item">
                     <Link to="/profile/:id"><i className="material-icons">account_circle</i></Link> 
                   </div>
                 </section>

@@ -117,6 +117,10 @@ class App extends React.Component{
       this.setState({currentUser: user.data, users: this.state.users.map(userOBJ => userOBJ.id === user.id ? user.data : userOBJ)})
     }
 
+    handleLogout = () => {
+      this.setState({currentUser: null})
+    }
+
     updateEvent = (event, date, title, location, description, image_url, price, id) => {
       event.preventDefault()
       let editedEvent = {
@@ -153,7 +157,7 @@ class App extends React.Component{
     return (
       
       <div className="App">
-        <NavBar currentUser={this.state.currentUser}/>
+        <NavBar currentUser={this.state.currentUser} handleLogout={this.handleLogout}/>
         <Switch >
           <Route path='/profile/:id' render={(props) => <ProfilePage {...props} 
             users={this.state.users} 
