@@ -16,8 +16,6 @@ const header = {
 
 
 //To Do
-//to compare dates must be in this format "2020-06-05"
-//past events will show as previously attended on user events page
 //have form field for url clear out after submission
 //actually be able to create an account
 //convert entire project using hooks and context

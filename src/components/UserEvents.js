@@ -1,15 +1,16 @@
 import React from 'react'
 import UserEventsContainer from '../containers/UserEventsContainer'
 
-class UserEvents extends React.Component {
-    
-    render() { 
-        return ( 
-            <div>
-                <UserEventsContainer joinedEvents={this.props.joinedEvents} currentUser={this.props.currentUser} removeRSVP={this.props.removeRSVP} currentDate={this.props.currentDate}/>
-            </div>
-        );
-    }
+function UserEvents(props) {
+    return ( 
+        <div>
+            <UserEventsContainer 
+            joinedEvents={props.joinedEvents} 
+            currentUser={props.currentUser} 
+            removeRSVP={props.removeRSVP} 
+            currentDate={props.currentDate}
+            />
+        </div>
+    );    
 }
- 
 export default UserEvents;

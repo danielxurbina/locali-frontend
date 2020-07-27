@@ -2,10 +2,9 @@ import React from 'react';
 import './default.css'
 import './layout.css'
 
-class Header extends React.Component {
-   render() {
+function Header(){
       return (
-      <React.Fragment>
+      <>
          <header id="home">
             <div className="row banner">
                <div className="banner-text">
@@ -19,10 +18,10 @@ class Header extends React.Component {
                <a className="smoothscroll" href="#about"><i className="icon-down-circle"></i></a>
             </p>
          </header>
-      </React.Fragment>
+      </>
    );
-   }
 }
+
 
 export default Header
 

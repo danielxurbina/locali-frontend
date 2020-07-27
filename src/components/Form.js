@@ -1,5 +1,6 @@
 import React from 'react'
 
+//move state for form inputs from App.js to here
 class Form extends React.Component {
     render() { 
         const {date, title, location, imageURL, description, price} = this.props

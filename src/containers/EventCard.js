@@ -2,7 +2,7 @@ import React from 'react'
 import { useHistory } from "react-router-dom";
 import './card-style.css'
 
-const EventCard = (props) => {
+function EventCard(props){
     let history = useHistory()
     const {image_url, title } = props.event.attributes
     const {id} = props.event

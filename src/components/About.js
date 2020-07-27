@@ -1,9 +1,9 @@
 import React from 'react';
 import './default.css'
 
-class About extends React.Component {
-   render() {
-      return (
+function About(){
+   
+   return (
       <section id="about">
          <div className="row">
             <div className="three columns">
@@ -19,7 +19,7 @@ class About extends React.Component {
             </div>
          </div>
       </section>
-      );
-   }
+   );
 }
+
 export default About
