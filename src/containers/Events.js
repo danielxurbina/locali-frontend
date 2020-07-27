@@ -21,5 +21,4 @@ const Events = (props) => {
         </div> 
     )
 }
-
 export default Events

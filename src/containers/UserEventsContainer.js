@@ -3,7 +3,6 @@ import UserEventDisplay from './UserEventsDisplay'
 import './card-style.css';
 
 function UserEventsContainer(props){
-    
     let joinedEvents = props.joinedEvents.map(event => event.attributes)
     let filteredEvents = joinedEvents.filter(event=> parseInt(event.user.id) === parseInt(props.currentUser.id))
     let upcoming = filteredEvents.filter(event => event.event.date > props.currentDate)

@@ -25,7 +25,7 @@ class Login extends React.Component {
               this.props.history.push('/homepage')
           }
           else if(user.attributes.username !== username && user.attributes.password !== password){
-            return
+            alert('Incorrect Credentials, Try Again')
           }
         })
       )}
@@ -56,36 +56,9 @@ class Login extends React.Component {
         )   
     }
 }
-
-
-
-
-
 export default Login
 
-// original format
-// <div>
-         
-            //     <form onSubmit={(event) => this.submitLoginHandler(event, this.state.username, this.state.password)}>
-            //         <label>
-            //             Username:
-            //             <input type="text" name="username" value={this.state.username} onChange={(event) => this.handleLogin(event)}/>
-            //         </label>
-            //         <label>
-            //             Password: 
-            //             <input 
-            //             name="password" 
-            //             placeholder="Password" 
-            //             type="password" 
-            //             value={this.state.password} 
-            //             onChange={(event) => this.handlePassword(event)}
-            //             />
-            //         </label>
-            //             <input type="submit" value="Submit" />
-            //     </form>
-            // </div>
 
-            /* eslint-disable max-len,no-script-url,jsx-a11y/anchor-is-valid,react/no-unescaped-entities */
 
 
 
