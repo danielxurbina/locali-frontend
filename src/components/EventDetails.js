@@ -46,7 +46,10 @@ class EventDetails extends React.Component {
     
         return(
             <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                <form className='ui form' onSubmit={(event) => this.props.updateEvent(event, date, title, location, description, image_url, price, eventId )}>
+                <form className='ui form' onSubmit={(event) => {
+                    this.props.updateEvent(event, date, title, location, description, image_url, price, eventId ); 
+                    this.toggleForm();
+                    }}>
                     <div className='field' style={{width: 300}}>
                         <label>Date</label>
                         <input type="date" name="date" value={date} onChange={(event) => this.handleFormChange(event)}/>

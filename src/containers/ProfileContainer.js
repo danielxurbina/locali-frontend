@@ -35,6 +35,7 @@ class ProfileContainer extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
+        this.setState({isClicked: false})
         let editedUser = {
             name: this.state.name,
             bio: this.state.bio,
