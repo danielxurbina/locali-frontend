@@ -11,7 +11,7 @@ class UserEventsDisplay extends React.Component{
     }
 
     render(){
-        const {title, date, description, image_url, price, location, id, user_id} = this.props.event
+        const {title, date, description, image_url, price, location, id} = this.props.event
         return(
             <div className='ui four wide column'>
                 <div className='ui card' style={{marginTop: 30}}>

@@ -10,9 +10,7 @@ class Header extends React.Component {
             <div className="row banner">
                <div className="banner-text">
                   <h1 className="responsive-headline">LOCALI</h1>
-                  <h3 style={{color:'#fff', fontFamily:'sans-serif '}}>Welcome to Locali!</h3>
-                  <a href="https://fontmeme.com/fonts/tex-gyre-termes-font/"></a>
-                  
+                  {/* <h3 style={{color:'#fff', fontFamily:'sans-serif '}}>Welcome to Locali!</h3> */}
                   <hr/>
                </div>
             </div>

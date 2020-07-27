@@ -156,9 +156,9 @@ class App extends React.Component{
     }
 
   render(){
-    console.log('Events', this.state.events)
-    console.log(currentDate)
-    console.log('Past Events', this.state.pastEvents)
+    // console.log('Events', this.state.events)
+    // console.log(currentDate)
+    // console.log('Past Events', this.state.pastEvents)
     let Events = this.state.events.filter(event => event.attributes.title.toLowerCase().includes(this.state.sort.toLowerCase()))
     this.sortOptions(Events)
     const {date, title, imageURL, description, location, price} = this.state
