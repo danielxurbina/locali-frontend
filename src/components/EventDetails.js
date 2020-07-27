@@ -49,6 +49,7 @@ class EventDetails extends React.Component {
                 <form className='ui form' onSubmit={(event) => {
                     this.props.updateEvent(event, date, title, location, description, image_url, price, eventId ); 
                     this.toggleForm();
+                    this.props.history.push('/profile/:id');
                     }}>
                     <div className='field' style={{width: 300}}>
                         <label>Date</label>
@@ -104,7 +105,7 @@ class EventDetails extends React.Component {
                 {this.state.isClicked ? this.renderEditForm() : ''}
                 <br></br>
                 <button className='ui button' onClick={this.toggleForm}>Edit Event</button>
-                <button className='ui button' value="Delete" onClick={() => this.props.deleteEvent(this.state.eventId)}>Delete Event</button>
+                <button className='ui button' value="Delete" onClick={() => {this.props.deleteEvent(this.state.eventId); this.props.history.push('/profile/:id')}}>Delete Event</button>
                 <br></br>
                 </div>
                 <br></br>
