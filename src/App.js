@@ -185,7 +185,8 @@ class App extends React.Component{
           <Route path='/events' render={(props) => <UserEvents {...props} 
             joinedEvents={this.state.joinedEvents} 
             currentUser={this.state.currentUser} 
-            removeRSVP={this.removeRSVP}/>} 
+            removeRSVP={this.removeRSVP}
+            currentDate={currentDate}/>} 
           /> {/*route to the events that the user has joined*/}
           <Route path='/homepage' render={(props) => <Dashboard {...props} 
             event={Events} 

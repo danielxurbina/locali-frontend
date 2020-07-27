@@ -24,7 +24,7 @@ class UserEventsDisplay extends React.Component{
                         <p className='card-text text-secondary'>Date: {date}</p>
                         <p className='card-text text-secondary'>Located at: {location}</p>
                         <p className='card-text text-secondary'>{description}</p>
-                        <button onClick={() => this.findEvent(id)}>Remove RSVP</button>
+                        <button onClick={() => this.findEvent(id)}>{this.props.currentDate < date ? "Remove RSVP" : "Remove Event"}</button>
                     </div>
                 </div>
             </div>
