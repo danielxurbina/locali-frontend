@@ -8,13 +8,15 @@ function EventCard(props){
     const {id} = props.event
 
     return(
-        <div className='card text-center shadow' style={{margin: 15}}>
-            <div className ='overflow'>
-                <img className="events-page-image" src={image_url} alt={title}/>
-            </div>
-            <div className='card-body text-dark'>
-                <h4 className='card-title'>{title}</h4>
-                <button className="button button-outline-success" onClick={() => history.push(`/details/${id}`)}>Event Details</button>
+        <div className='ui four wide column'>
+            <div className='ui card' style={{marginTop: 30}}>
+                <div className ='image'>
+                    <img className="events-page-image" src={image_url} alt={title}/>
+                </div>
+                <div className='card-body text-dark'>
+                    <h4 className='card-title'>{title}</h4>
+                    <button className="button button-outline-success" onClick={() => history.push(`/details/${id}`)}>Event Details</button>
+                </div>
             </div>
         </div>
     )

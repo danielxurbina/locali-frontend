@@ -55,17 +55,18 @@ class ProfileContainer extends React.Component {
     renderUser = () => {
         const{image_url, name, username, bio} = this.props.currentUser.attributes
         return( 
-            <div>
-                <img style={{width: 300, height: 400, marginTop: 30, marginLeft: 15}} src={image_url} alt={name}></img>
+            <div style={{borderStyle: 'solid', borderColor: 'blue', display: 'flex'}}>
+                <div style={{borderStyle: 'solid', borderColor: 'green', flex: 1 }}>
+                <img  src={image_url} alt={name} style={{height: 200, width: 200, textAlign: 'center'}}></img>
                 <p>{name}</p>
                 <p>@{username}</p>
                 <p>{bio}</p>
                 {this.state.isClicked ? this.renderEditForm() : ''}
                 <br></br>
                 <button className='ui button' onClick={this.toggleForm}>Edit Profile</button>
-                <br></br>
-                <br></br>
-                <br></br>
+                </div>
+                <div style={{borderStyle: 'solid', borderColor: 'red', flex: 2, justifyContent: 'flex-end'}}>
+                </div>
             </div>
         )
     } 
@@ -96,31 +97,40 @@ class ProfileContainer extends React.Component {
 
     render(){
         return(
-        <Grommet full theme={grommet}>
-            <Grid
-                rows={["xxsmall", "medium", "xsmall"]}
-                columns={["1/4", "3/4"]}
-                areas={[
-                    ["sidebar", "main"]
-                ]}
-                gap="small"
-            >
-            <Box gridArea="sidebar">
-                {this.renderUser()}
-            </Box>
-            <Box  gridArea="main">
-                <div className="container-fluid d-flex justify-content-center">
-                    <div className="row">
-                        <div className="col-md-4">
-                            {this.props.events.map(event => <EventCard event={event} key={event.id}/>)}
-                        </div>
-                    </div>
+            <div>
+                <div>
+                    {this.renderUser()}
                 </div>
-            </Box>
-            </Grid>
-        </Grommet>
+                <div className="ui grid container">
+                    {this.props.events.map(event => <EventCard event={event} key={event.id}/>)}
+                </div>
+            </div>
         )
     }
 }
 
 export default ProfileContainer
+
+        // <Grommet full theme={grommet}>
+        //     <Grid
+        //         rows={["xxsmall", "medium", "xsmall"]}
+        //         columns={["1/4", "3/4"]}
+        //         areas={[
+        //             ["sidebar", "main"]
+        //         ]}
+        //         gap="small"
+        //     >
+        //     <Box gridArea="sidebar">
+        //         {this.renderUser()}
+        //     </Box>
+        //     <Box  gridArea="main">
+        //         <div className="container-fluid d-flex justify-content-center">
+        //             <div className="row">
+        //                 <div className="col-md-4">
+        //                     {this.props.events.map(event => <EventCard event={event} key={event.id}/>)}
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     </Box>
+        //     </Grid>
+        // </Grommet>
