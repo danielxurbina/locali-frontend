@@ -56,8 +56,8 @@ class ProfileContainer extends React.Component {
         const{image_url, name, username, bio} = this.props.currentUser.attributes
         return( 
             <div style={{borderStyle: 'solid', borderColor: 'blue', display: 'flex'}}>
-                <div style={{borderStyle: 'solid', borderColor: 'green', flex: 1 }}>
-                <img  src={image_url} alt={name} style={{height: 200, width: 200, textAlign: 'center'}}></img>
+                <div style={{borderStyle: 'solid', borderColor: 'green', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <img  src={image_url} alt={name} style={{height: 200, width: 200}}></img>
                 <p>{name}</p>
                 <p>@{username}</p>
                 <p>{bio}</p>
@@ -65,7 +65,7 @@ class ProfileContainer extends React.Component {
                 <br></br>
                 <button className='ui button' onClick={this.toggleForm}>Edit Profile</button>
                 </div>
-                <div style={{borderStyle: 'solid', borderColor: 'red', flex: 2, justifyContent: 'flex-end'}}>
+                <div style={{borderStyle: 'solid', borderColor: 'red', flex: 2 }}>
                 </div>
             </div>
         )
@@ -97,14 +97,12 @@ class ProfileContainer extends React.Component {
 
     render(){
         return(
-            <div>
-                <div>
-                    {this.renderUser()}
-                </div>
-                <div className="ui grid container">
+            <>
+            {this.renderUser()}
+            <div className="ui grid container">
                     {this.props.events.map(event => <EventCard event={event} key={event.id}/>)}
-                </div>
             </div>
+            </>
         )
     }
 }

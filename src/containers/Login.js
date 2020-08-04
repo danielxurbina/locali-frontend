@@ -24,9 +24,6 @@ class Login extends React.Component {
               this.props.setCurrentUser(user)
               this.props.history.push('/homepage')
           }
-          else if(user.attributes.username !== username && user.attributes.password !== password){
-            alert('Incorrect Credentials, Try Again')
-          }
         })
       )}
 
