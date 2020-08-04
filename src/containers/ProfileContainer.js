@@ -55,9 +55,9 @@ class ProfileContainer extends React.Component {
     renderUser = () => {
         const{image_url, name, username, bio} = this.props.currentUser.attributes
         return( 
-            <div style={{borderStyle: 'solid', borderColor: 'blue', display: 'flex'}}>
+            <div style={{borderStyle: 'solid', borderColor: 'blue', display: 'flex', backgroundColor: 'grey'}}>
                 <div style={{borderStyle: 'solid', borderColor: 'green', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <img  src={image_url} alt={name} style={{height: 200, width: 200}}></img>
+                <img  src={image_url} alt={name} style={{height: 250, width: 250, margin: 20, padding: 20, borderRadius: 5}}></img>
                 <p>{name}</p>
                 <p>@{username}</p>
                 <p>{bio}</p>
