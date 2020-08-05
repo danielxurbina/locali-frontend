@@ -1,4 +1,4 @@
-html, body, div, span,object,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,cite,code,del,dfn,em,img,ins,kbd,q,samp,
+/* html, body, div, span,object,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,cite,code,del,dfn,em,img,ins,kbd,q,samp,
 table {display: block;}
 audio:not([controls]) {
   display: none;
@@ -53,7 +53,7 @@ body {
   font-size: 15px;
   line-height: 30px;
   color: #838c95;
-  -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
+  -webkit-font-smoothing: antialiased; 
   -webkit-text-size-adjust: 100%;
 }
 h1,h2,h3,h4,h5,h6 {
@@ -96,4 +96,4 @@ p img {margin: 0;}
 p.lead {
   font: 19px/36px "opensans-light", sans-serif;
   margin-bottom: 18px;
-}
+} */

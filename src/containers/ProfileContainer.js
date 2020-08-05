@@ -1,7 +1,5 @@
 import React from 'react'
 import EventCard from './EventCard'
-import { Grommet, Box, Grid } from "grommet";
-import { grommet } from "grommet/themes";
 const header = {
     "Accept": "application/json",
     "Content-Type": "application/json"
@@ -109,26 +107,3 @@ class ProfileContainer extends React.Component {
 
 export default ProfileContainer
 
-        // <Grommet full theme={grommet}>
-        //     <Grid
-        //         rows={["xxsmall", "medium", "xsmall"]}
-        //         columns={["1/4", "3/4"]}
-        //         areas={[
-        //             ["sidebar", "main"]
-        //         ]}
-        //         gap="small"
-        //     >
-        //     <Box gridArea="sidebar">
-        //         {this.renderUser()}
-        //     </Box>
-        //     <Box  gridArea="main">
-        //         <div className="container-fluid d-flex justify-content-center">
-        //             <div className="row">
-        //                 <div className="col-md-4">
-        //                     {this.props.events.map(event => <EventCard event={event} key={event.id}/>)}
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </Box>
-        //     </Grid>
-        // </Grommet>

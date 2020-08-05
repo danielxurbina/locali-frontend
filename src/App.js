@@ -49,10 +49,21 @@ class App extends React.Component{
       }))
     } 
 
-    inputHandler = (event) => {this.setState({[event.target.name]: event.target.value})}
-    searchPosts = (event) => {this.setState({sort: event.target.value})}
-    sortBy = (event) => {this.setState({sorted: event.target.value})}
-    setCurrentUser = (user) => {this.setState({currentUser: user})}
+    inputHandler = (event) => {
+      this.setState({[event.target.name]: event.target.value})
+    }
+
+    searchPosts = (event) => {
+      this.setState({sort: event.target.value})
+    }
+
+    sortBy = (event) => {
+      this.setState({sorted: event.target.value})
+    }
+
+    setCurrentUser = (user) => {
+      this.setState({currentUser: user})
+    }
 
     submitFormHandler = (event) => {
       event.preventDefault()
@@ -154,14 +165,10 @@ class App extends React.Component{
     }
 
   render(){
-    // console.log('Events', this.state.events)
-    // console.log(currentDate)
-    // console.log('Past Events', this.state.pastEvents)
     let Events = this.state.events.filter(event => event.attributes.title.toLowerCase().includes(this.state.sort.toLowerCase()))
     this.sortOptions(Events)
     const {date, title, imageURL, description, location, price} = this.state
     return (
-      
       <div className="App">
         <NavBar currentUser={this.state.currentUser} handleLogout={this.handleLogout}/>
         <Switch >
@@ -170,7 +177,7 @@ class App extends React.Component{
             events={Events} 
             currentUser={this.state.currentUser} 
             updateCurrentUser={this.updateCurrentUser}/>} 
-          /> {/* route to the profile page*/}
+          /> 
           <Route path='/details/:id' render={(props) => <EventDetails {...props} 
             currentUser={this.state.currentUser} 
             deleteEvent={this.deleteEvent} 
@@ -179,13 +186,13 @@ class App extends React.Component{
             description={description} 
             title={title} price={price} 
             location={location}  /> } 
-          /> {/*route to the details of a specific event*/}
+          /> 
           <Route path='/events' render={(props) => <UserEvents {...props} 
             joinedEvents={this.state.joinedEvents} 
             currentUser={this.state.currentUser} 
             removeRSVP={this.removeRSVP}
             currentDate={currentDate}/>} 
-          /> {/*route to the events that the user has joined*/}
+          /> 
           <Route path='/homepage' render={(props) => <Dashboard {...props} 
             event={Events} 
             inputHandler={this.inputHandler} 
@@ -201,7 +208,7 @@ class App extends React.Component{
             currentUser={this.state.currentUser}
             submitRSVP={this.submitRSVP}/>}
           /> 
-          <Route path='/signup' component={SignUp} /> {/*route to the sign up page */}
+          <Route path='/signup' component={SignUp} /> 
           <Route exact path="/login" render={(props) => <Login {...props} setCurrentUser={this.setCurrentUser}/>}/> 
           <Route exact path="/" component={HomePage} /> 
         </Switch>

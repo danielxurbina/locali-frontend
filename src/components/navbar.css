@@ -32,8 +32,7 @@
     margin-right: 0.75rem;
   }
   
-  .ads-c-navbar__navbar-menu-items {
-      
+  .ads-c-navbar__navbar-menu-items {  
     display: flex;
     list-style-type: none;
     margin-left: 0px;
