@@ -1,5 +1,6 @@
 import React from 'react'
 import EventCard from './EventCard'
+import './ProfileContainer.css'
 const header = {
     "Accept": "application/json",
     "Content-Type": "application/json"
@@ -49,13 +50,12 @@ class ProfileContainer extends React.Component {
         .then(user => this.props.updateCurrentUser(user))
     }
     
-
     renderUser = () => {
         const{image_url, name, username, bio} = this.props.currentUser.attributes
         return( 
-            <div style={{borderStyle: 'solid', borderColor: 'blue', display: 'flex', backgroundColor: 'grey'}}>
-                <div style={{borderStyle: 'solid', borderColor: 'green', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <img  src={image_url} alt={name} style={{height: 250, width: 250, margin: 20, padding: 20, borderRadius: 5}}></img>
+            <div className='profile'>
+                <div className='info'>
+                <img className='pic' src={image_url} alt={name}></img>
                 <p>{name}</p>
                 <p>@{username}</p>
                 <p>{bio}</p>
@@ -63,7 +63,7 @@ class ProfileContainer extends React.Component {
                 <br></br>
                 <button className='ui button' onClick={this.toggleForm}>Edit Profile</button>
                 </div>
-                <div style={{borderStyle: 'solid', borderColor: 'red', flex: 2 }}>
+                <div className='space'>
                 </div>
             </div>
         )
@@ -72,7 +72,7 @@ class ProfileContainer extends React.Component {
     renderEditForm = () => {
         return(
             <form className="ui form" onSubmit={(event) => this.handleSubmit(event)}>
-                <div className='filed'>
+                <div className='field'>
                     <label>Name</label>
                     <input type='text' name='name' placeholder='Change Name' value={this.state.name} onChange={this.handleFormChange}></input>
                 </div>

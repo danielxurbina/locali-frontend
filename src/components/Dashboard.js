@@ -6,7 +6,7 @@ import Search from './Search'
 function Dashboard(props) {
     
     const {date, title, imageURL, description, location, price} = props
-    return (  
+    return ( 
             <div style={{marginTop: 30}}>
                 <Search searchPosts={props.searchPosts} sortBy={props.sortBy}/>
                 <Form 

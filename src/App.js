@@ -53,16 +53,16 @@ class App extends React.Component{
       this.setState({[event.target.name]: event.target.value})
     }
 
+    setCurrentUser = (user) => {
+      this.setState({currentUser: user})
+    }
+
     searchPosts = (event) => {
       this.setState({sort: event.target.value})
     }
 
     sortBy = (event) => {
       this.setState({sorted: event.target.value})
-    }
-
-    setCurrentUser = (user) => {
-      this.setState({currentUser: user})
     }
 
     submitFormHandler = (event) => {

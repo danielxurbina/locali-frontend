@@ -1,0 +1,26 @@
+.profile {
+  display: flex; 
+  background-image: linear-gradient(to right, #e79e85, #f2e9d0); 
+  border-top: 5px solid #ffffff;
+  padding-bottom: 30px;
+}
+
+.info {
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile img {
+  margin: 20px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  padding: 5px;
+  width: 250px;
+}
+
+.space {
+  flex: 2;
+}
+
