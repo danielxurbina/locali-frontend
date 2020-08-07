@@ -13,8 +13,8 @@ function About(){
             <div className="nine-columns main-col">
                <h2 className="description-title">Meet the creators</h2>
                <p className="description">
-                  Hello! Our names are Kelly and Daniel and we created Locali to serve as a fun environment to find and join in local events. You can create an event or RSVP to an event, so you no longer have to worry about
-                  missing out! We thank you for visiting our project, enjoy!
+                  Hello! Our names are Kelly and Daniel and we created Locali to serve as a fun environment to find and join in local events. 
+                  You can create an event or RSVP to an event. Thank you for visiting our project, enjoy!
                </p>
             </div>
          </div>

@@ -14,7 +14,7 @@ function EventCard(props){
                 </div>
                 <div className='card-body text-dark'>
                     <h4 className='card-title'>{title}</h4>
-                    <button className="button button-outline-success" onClick={() => history.push(`/details/${id}`)}>Event Details</button>
+                    <button className="ui basic button" onClick={() => history.push(`/details/${id}`)}>Event Details</button>
                 </div>
             </div>
         </div>

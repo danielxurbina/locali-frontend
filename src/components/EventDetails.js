@@ -1,5 +1,4 @@
 import React from 'react'
-import "./event-details.css";
 const eventsURL = "http://localhost:3000/events";
 
 

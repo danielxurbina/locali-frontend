@@ -22,7 +22,7 @@ function UserEventsDisplay(props){
                         <p className='card-text text-secondary'>Date: {date}</p>
                         <p className='card-text text-secondary'>Located at: {location}</p>
                         <p className='card-text text-secondary'>{description}</p>
-                        <button onClick={() => findEvent(id)}>{props.currentDate < date ? "Remove RSVP" : "Remove Event"}</button>
+                        <button className="ui basic button" onClick={() => findEvent(id)}>{props.currentDate < date ? "Remove RSVP" : "Remove Event"}</button>
                     </div>
                 </div>
             </div>
