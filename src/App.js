@@ -6,7 +6,7 @@ import { Login, SignUp} from './containers/'
 const today = new Date()
 const year = today.getFullYear()
 const month = (today.getMonth() +1).toString().padStart(2, '0')
-const day = today.getDate()
+const day = today.getDate().toString().padStart(2, '0')
 const currentDate = `${year}-${month}-${day}`
 const URL = "http://localhost:3000/"
 const header = {
@@ -156,7 +156,6 @@ class App extends React.Component{
     }
 
   render(){
-    console.log(currentDate)
     let Events = this.state.events.filter(event => event.attributes.title.toLowerCase().includes(this.state.sort.toLowerCase()))
     this.sortOptions(Events)
     const {date, title, imageURL, description, location, price} = this.state
