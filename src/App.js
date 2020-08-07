@@ -14,24 +14,15 @@ const header = {
     "Content-Type": "application/json"
 }
 
-
 //To Do
-//have form field for url clear out after submission
 //actually be able to create an account
-//convert entire project using hooks and context
 
 class App extends React.Component{
 
     state = { 
       currentUser: null, 
       events: [],
-      pastEvents: [], 
-      date: "", 
-      title: "", 
-      imageURL: "", 
-      description: "", 
-      location: "", 
-      price: 0, 
+      pastEvents: [],  
       sort: "", 
       sorted: "", 
       users: [], 
@@ -158,7 +149,6 @@ class App extends React.Component{
   render(){
     let Events = this.state.events.filter(event => event.attributes.title.toLowerCase().includes(this.state.sort.toLowerCase()))
     this.sortOptions(Events)
-    const {date, title, imageURL, description, location, price} = this.state
     return (
       <div className="App">
         <NavBar currentUser={this.state.currentUser} handleLogout={this.handleLogout}/>
@@ -172,11 +162,7 @@ class App extends React.Component{
           <Route path='/details/:id' render={(props) => <EventDetails {...props} 
             currentUser={this.state.currentUser} 
             deleteEvent={this.deleteEvent} 
-            updateEvent={this.updateEvent} 
-            date={date} imageURL={imageURL} 
-            description={description} 
-            title={title} price={price} 
-            location={location}  /> } 
+            updateEvent={this.updateEvent}/> } 
           /> 
           <Route path='/events' render={(props) => <UserEvents {...props} 
             joinedEvents={this.state.joinedEvents} 
