@@ -1,6 +1,6 @@
 import React from 'react'
 import UserEventDisplay from './UserEventsDisplay'
-import './card-style.css';
+import './UserEvents.css';
 
 function UserEventsContainer(props){
     let joinedEvents = props.joinedEvents.map(event => event.attributes)
@@ -9,7 +9,7 @@ function UserEventsContainer(props){
     let previous = filteredEvents.filter(event => event.event.date < props.currentDate)
     return (
         <>
-            <div className="header" style={{height: 100, width: '100vw', backgroundColor: 'grey', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <div className="events-banner">
                 <h1>Upcoming Events</h1>
             </div>
             <div className="ui grid container">
@@ -20,7 +20,7 @@ function UserEventsContainer(props){
                 joinedEvents={props.joinedEvents} 
                 currentDate={props.currentDate}/>)}
             </div>
-            <div className="header" style={{height: 100, width: '100vw', backgroundColor: 'grey', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 30}}>
+            <div className="attended-banner">
                 <h1>Attended Events</h1>
             </div>
             <div className="ui grid container">

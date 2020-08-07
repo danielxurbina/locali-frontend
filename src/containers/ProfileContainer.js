@@ -19,18 +19,23 @@ class ProfileContainer extends React.Component {
     }
 
     componentDidMount(){
+        const {name, username, bio, image_url} = this.props.currentUser.attributes
         this.setState({
             id: this.props.currentUser.id, 
-            name: this.props.currentUser.attributes.name, 
-            username: this.props.currentUser.attributes.username,
-            bio: this.props.currentUser.attributes.bio, 
-            image_url: this.props.currentUser.attributes.image_url
+            name: name, 
+            username: username,
+            bio: bio, 
+            image_url: image_url
         })
     }
 
-    toggleForm = () => {this.setState({isClicked: !this.state.isClicked})}
+    toggleForm = () => {
+        this.setState({isClicked: !this.state.isClicked})
+    }
 
-    handleFormChange = (event) => {this.setState({[event.target.name]: event.target.value})}
+    handleFormChange = (event) => {
+        this.setState({[event.target.name]: event.target.value})
+    }
 
     handleSubmit = (event) => {
         event.preventDefault()
@@ -59,11 +64,11 @@ class ProfileContainer extends React.Component {
                 <p>{name}</p>
                 <p>@{username}</p>
                 <p>{bio}</p>
-                {this.state.isClicked ? this.renderEditForm() : ''}
                 <br></br>
                 <button className='ui button' onClick={this.toggleForm}>Edit Profile</button>
                 </div>
                 <div className='space'>
+                {this.state.isClicked ? this.renderEditForm() : ''}
                 </div>
             </div>
         )

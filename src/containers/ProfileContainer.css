@@ -22,5 +22,12 @@
 
 .space {
   flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.field {
+  width: 60vw;
 }
 

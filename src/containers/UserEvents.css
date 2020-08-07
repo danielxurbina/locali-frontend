@@ -1,0 +1,27 @@
+.events-banner {
+  height: 100px;
+  width: 100vw;
+  background-image: linear-gradient(to right, #e79e85, #f2e9d0);
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.attended-banner {
+  height: 100px;
+  width: 100vw;
+  background-image: linear-gradient(to right, #e79e85, #f2e9d0);
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.events-banner h1 {
+  color: #ffffff;
+}
+
+.attended-banner h1 {
+  color: #ffffff;
+}

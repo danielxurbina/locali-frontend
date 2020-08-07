@@ -1,5 +1,4 @@
 import React from 'react'
-import './card-style.css';
 
 function UserEventsDisplay(props){
     

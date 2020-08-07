@@ -22,7 +22,7 @@ header {
     margin: 0 auto;
     width: 85%;
     padding-bottom: 30px;
-    stext-align: center;
+    text-align: center;
   }
   header .banner-text {width: 100%;}
   header .banner-text h1 {

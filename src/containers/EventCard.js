@@ -1,6 +1,5 @@
 import React from 'react'
 import { useHistory } from "react-router-dom";
-import './card-style.css'
 
 function EventCard(props){
     let history = useHistory()
