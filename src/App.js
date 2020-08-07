@@ -49,10 +49,6 @@ class App extends React.Component{
       }))
     } 
 
-    inputHandler = (event) => {
-      this.setState({[event.target.name]: event.target.value})
-    }
-
     setCurrentUser = (user) => {
       this.setState({currentUser: user})
     }
@@ -65,16 +61,17 @@ class App extends React.Component{
       this.setState({sorted: event.target.value})
     }
 
-    submitFormHandler = (event) => {
+    submitFormHandler = (event, date, title, location, description, imageURL, price) => {
       event.preventDefault()
+      console.log(date, title, location, description, imageURL, price )
       let newPostOBJ = {
           user_id: this.state.currentUser.id, 
-          location: this.state.location, 
-          title: this.state.title,
-          date: this.state.date, 
-          description: this.state.description, 
-          image_url: this.state.imageURL,
-          price: this.state.price
+          location: location, 
+          title: title,
+          date: date, 
+          description: description, 
+          image_url: imageURL,
+          price: price
       }
       fetch(`${URL}/events`, {method: "POST", headers: header, body: JSON.stringify(newPostOBJ)})
       .then(response => response.json())
@@ -82,12 +79,6 @@ class App extends React.Component{
           fetch(`${URL}/events/${eventOBJ.id}`)
           .then(response => response.json())
           .then(event => this.setState({
-              date: "", 
-              description: "", 
-              imageURL: "", 
-              location: "", 
-              title: "", 
-              price: 0, 
               events: [...this.state.events, event.data]
           }))
       )
@@ -165,6 +156,7 @@ class App extends React.Component{
     }
 
   render(){
+    console.log(currentDate)
     let Events = this.state.events.filter(event => event.attributes.title.toLowerCase().includes(this.state.sort.toLowerCase()))
     this.sortOptions(Events)
     const {date, title, imageURL, description, location, price} = this.state
@@ -195,13 +187,6 @@ class App extends React.Component{
           /> 
           <Route path='/homepage' render={(props) => <Dashboard {...props} 
             event={Events} 
-            inputHandler={this.inputHandler} 
-            date={date} 
-            title={title} 
-            image={imageURL} 
-            description={description} 
-            location={location} 
-            price={price} 
             submitFormHandler={this.submitFormHandler} 
             searchPosts={this.searchPosts} 
             sortBy={this.sortBy}
