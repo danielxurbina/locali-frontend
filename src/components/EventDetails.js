@@ -88,9 +88,6 @@ class EventDetails extends React.Component {
         const {name} = this.state.event.attributes.user
         return (
             <div className="event-details-page">
-                <div className="image-container">
-                    <img className="events-photo" src={image_url} alt={title}/>
-                </div>
                 <div className="page-info">
                 {this.state.isClicked ? this.renderEditForm() 
                 :
@@ -110,6 +107,9 @@ class EventDetails extends React.Component {
                 </div>
                 </>
                 }
+                </div>
+                <div className="image-container">
+                    <img className="events-photo" src={image_url} alt={title}/>
                 </div>
             </div>
         )       
