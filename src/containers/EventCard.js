@@ -8,7 +8,7 @@ function EventCard(props){
 
     return(
         <div className='ui four wide column'>
-            <div className='ui card' style={{marginTop: 30}}>
+            <div className='ui card' style={{minHeight: 50}}>
                 <div className ='image'>
                     <img className="events-page-image" src={image_url} alt={title}/>
                 </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import './EventDetails.css'
 const eventsURL = "http://localhost:3000/events";
 
 
@@ -44,33 +45,33 @@ class EventDetails extends React.Component {
         const {date, title, location, description, image_url, price, eventId} = this.state
     
         return(
-            <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+            <div className='edit-form' style={{}}>
                 <form className='ui form' onSubmit={(event) => {
                     this.props.updateEvent(event, date, title, location, description, image_url, price, eventId ); 
                     this.toggleForm();
-                    this.props.history.push('/profile/:id');
+                    // this.props.history.push('/profile/:id');
                     }}>
-                    <div className='field' style={{width: 300}}>
+                    <div className='field'>
                         <label>Date</label>
                         <input type="date" name="date" value={date} onChange={(event) => this.handleFormChange(event)}/>
                     </div>
-                    <div className='field' style={{width: 300}}>
+                    <div className='field'>
                         <label>Title</label>
                         <input type="text" name="title" placeholder="Title" value={title} onChange={(event) => this.handleFormChange(event)}/>
                     </div>
-                    <div className='field'style={{width: 300}}>
+                    <div className='field'>
                         <label>Location</label>
                         <input type="text" name="location" placeholder="Location" value={location} onChange={(event) => this.handleFormChange(event)}/>
                     </div>
-                    <div className='field' style={{width: 300}}>
+                    <div className='field'>
                         <label>Description</label>
                         <input type="text" name="description" placeholder="Description" value={description} onChange={(event) => this.handleFormChange(event)}/>
                     </div>
-                    <div className='field' style={{width: 300}}>
+                    <div className='field'>
                         <label>Image</label>
                         <input type="text" name="imageURL" placeholder="ImageURL" value={image_url} onChange={(event) => this.handleFormChange(event)}/>
                     </div>
-                    <div className='field' style={{width: 300}}>
+                    <div className='field'>
                         <label>Price</label>
                         <input type="number" name="price" placeholder="Price" value={price} onChange={(event) => this.handleFormChange(event)}/>
                     </div>
@@ -86,29 +87,30 @@ class EventDetails extends React.Component {
         const { date, description, image_url, price, title, location} = this.state.event.attributes
         const {name} = this.state.event.attributes.user
         return (
-            <div className="event-details-page" style={{marginTop: 30, }}>
-                <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                <img className="events-photo" src={image_url} alt={title} style={{ height: 375, width: 500, marginBottom: 25}}/>
+            <div className="event-details-page">
+                <div className="image-container">
+                    <img className="events-photo" src={image_url} alt={title}/>
                 </div>
                 <div className="page-info">
+                {this.state.isClicked ? this.renderEditForm() 
+                :
+                <>
                 <h2>{title}</h2>
-                <div style={{fontSize: 15}}>Created By: {name}</div>
-                <br></br>
-                <div style={{fontSize: 15}}>Price: {price}</div>
-                <br></br>
-                <div style={{fonstSize: 15}}>Date: {date}</div>
-                <br></br>
-                <div style={{fonstSize: 15}}>Located at: {location}</div>
-                <br></br>
-                <div style={{fonstSize: 15, marginRight: 400, marginLeft: 400}}>{description}</div>
-                {this.state.isClicked ? this.renderEditForm() : ''}
-                <br></br>
-                <button className='ui button' onClick={this.toggleForm}>Edit Event</button>
-                <button className='ui button' value="Delete" onClick={() => {this.props.deleteEvent(this.state.eventId); this.props.history.push('/profile/:id')}}>Delete Event</button>
-                <br></br>
+                    <section>
+                        <div>Created By: {name}</div>
+                        <div>Price: {price}</div>
+                        <div>Date: {date}</div>
+                        <div>Located at: {location}</div>
+                        <div>{description}</div>
+                    </section>
+                <div className='buttons'>
+                    <button className='ui button' onClick={this.toggleForm}>Edit Event</button>
+                    <button className='ui button' value="Delete" onClick={() => {this.props.deleteEvent(this.state.eventId); this.props.history.push('/profile/:id')}}>Delete Event</button>
+                    <button className='ui button' onClick={() => this.props.history.push('/homepage')}>Go Back To Homepage</button>
                 </div>
-                <br></br>
-                <button className='ui button' style={{marginBottom: 25}} onClick={() => this.props.history.push('/homepage')}>Go Back To Homepage</button>
+                </>
+                }
+                </div>
             </div>
         )       
     }

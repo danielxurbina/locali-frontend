@@ -12,7 +12,7 @@ function UserEventsDisplay(props){
         const {title, date, description, image_url, price, location, id} = props.event
         return(
             <div className='ui four wide column'>
-                <div className='ui card' style={{marginTop: 30}}>
+                <div className='ui card'>
                     <div className ='image'>
                         <img className="events-page-image" src={image_url} alt={title}/>
                     </div>

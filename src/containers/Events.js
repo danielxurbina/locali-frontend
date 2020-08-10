@@ -6,8 +6,9 @@ const Events = (props) => {
     const {title, date, description, image_url, price, location} = props.event.attributes
     const {name} = props.event.attributes.user
     return(
-        <div className='ui four wide column'>
-            <div className='ui card' style={{height: 615}}>
+    <div className='ui four wide column'>
+        <div className="ui cards">
+            <div className='card'>
                 <div className='image'>
                     <img style={{height: 260}} src={image_url} alt={title}/>
                 </div>
@@ -18,7 +19,8 @@ const Events = (props) => {
                 <p>{description}</p>
                 <button className="ui basic button" onClick={() => props.submitRSVP(props.event.id)}>Click To RSVP</button>
             </div>
-        </div> 
+        </div>
+    </div> 
     )
 }
 export default Events
