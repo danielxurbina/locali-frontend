@@ -3,7 +3,6 @@ import './App.css';
 import { Route, Switch,} from 'react-router-dom';
 import { HomePage, Dashboard, NavBar, EventDetails, UserEvents, ProfilePage } from './components/';
 import { Login, SignUp} from './containers/'
-let currentUserEvents;
 const today = new Date()
 const year = today.getFullYear()
 const month = (today.getMonth() +1).toString().padStart(2, '0')
@@ -166,8 +165,7 @@ class App extends React.Component{
           <Route path='/details/:id' render={(props) => <EventDetails {...props} 
             currentUser={this.state.currentUser} 
             deleteEvent={this.deleteEvent} 
-            updateEvent={this.updateEvent}
-            currentUserEvents ={currentUserEvents}/> } 
+            updateEvent={this.updateEvent}/>} 
           /> 
           <Route path='/events' render={(props) => <UserEvents {...props} 
             joinedEvents={this.state.joinedEvents} 
@@ -185,7 +183,7 @@ class App extends React.Component{
           /> 
           <Route path='/signup' component={SignUp} /> 
           <Route exact path="/login" render={(props) => <Login {...props} setCurrentUser={this.setCurrentUser}/>}/> 
-          <Route exact path="/" component={HomePage} /> 
+          <Route exact path="/" component={HomePage}/> 
         </Switch>
       </div>
     );
