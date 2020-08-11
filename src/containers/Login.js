@@ -30,10 +30,9 @@ class Login extends React.Component {
     render(){
         return( 
           <div className="SignUpLayout">
-          <div className="SignUpFormWithTitle">
-            <div className="UserHeaderTitle" />
-            <div className="LogInImg" />
+            <div className="LogInImg"/>
             <div className="SignUpForm">
+              <div className='form-container'>
               <h3>
                 <b>Sign In</b>
               </h3>
@@ -42,14 +41,15 @@ class Login extends React.Component {
                 <input className="SignUpTextBox" type="text" name="username" placeholder="Username" value={this.state.username} onChange={(event) => this.handleLogin(event)}/>
                 <label>Password</label>
                 <input type="password" className="SignUpTextBox" name="password" placeholder="Password" value={this.state.password} onChange={(event) => this.handlePassword(event)}/> 
-                <p className ="space this shit"> </p>
+                <div className='auth-buttons'>
+                  <br></br>
                 <button className="btnSignUp" type="submit" value="Submit">Sign In</button>
                 <button className="btnSignUp" type="sign up" value="Sign Up" onClick={() => this.props.history.push('/signup')}>Sign Up</button>
+                </div>
               </form>
             </div>
+            </div>
           </div>
-          </div>          
-          
         )   
     }
 }

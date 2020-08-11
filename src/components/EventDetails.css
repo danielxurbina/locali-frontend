@@ -22,6 +22,9 @@
   flex-direction: column;
   justify-content: center;
   background-image: linear-gradient(to right, #e79e85, #f8bca8);
+  border-top: 5px solid #D9D6D3;
+  border-left: 5px solid #D9D6D3;
+  border-bottom: 5px solid #D9D6D3;
 }
 
 h2 {
