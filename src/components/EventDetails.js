@@ -8,6 +8,7 @@ class EventDetails extends React.Component {
     state = {
         isClicked: false,
         event: null,
+        userEvents: [],
         date: '',
         description: '',
         image_url: '',
@@ -21,7 +22,8 @@ class EventDetails extends React.Component {
         fetch(`${eventsURL}/${this.props.match.params.id}`)
         .then(response => response.json())
         .then(event => this.setState({
-            event: event.data, date: event.data.attributes.date, 
+            event: event.data, 
+            date: event.data.attributes.date, 
             description: event.data.attributes.description,
             image_url: event.data.attributes.image_url, 
             price: event.data.attributes.price, 
@@ -41,15 +43,25 @@ class EventDetails extends React.Component {
         })
     }
 
+    updateEventDetails = (date, title, location, description, image_url, price) => {
+        this.setState({
+            location: location,
+            title: title,
+            date: date,
+            description: description,
+            image_url: image_url,
+            price: price
+        })
+    }
+
     renderEditForm = () => {
         const {date, title, location, description, image_url, price, eventId} = this.state
-    
         return(
-            <div className='edit-form' style={{}}>
+            <div className='edit-form'>
                 <form className='ui form' onSubmit={(event) => {
                     this.props.updateEvent(event, date, title, location, description, image_url, price, eventId ); 
-                    this.toggleForm();
-                    // this.props.history.push('/profile/:id');
+                    this.toggleForm()
+                    this.updateEventDetails(date, title, location, description, image_url, price);
                     }}>
                     <div className='field'>
                         <label>Date</label>
@@ -84,7 +96,7 @@ class EventDetails extends React.Component {
 
 
     renderEvent = () => {
-        const { date, description, image_url, price, title, location} = this.state.event.attributes
+        const { date, description, image_url, price, title, location} = this.state
         const {name} = this.state.event.attributes.user
         return (
             <div className="event-details-page">

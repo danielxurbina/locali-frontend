@@ -3,6 +3,7 @@ import './App.css';
 import { Route, Switch,} from 'react-router-dom';
 import { HomePage, Dashboard, NavBar, EventDetails, UserEvents, ProfilePage } from './components/';
 import { Login, SignUp} from './containers/'
+let currentUserEvents;
 const today = new Date()
 const year = today.getFullYear()
 const month = (today.getMonth() +1).toString().padStart(2, '0')
@@ -143,7 +144,10 @@ class App extends React.Component{
 
     deleteEvent = (id) => {
       this.setState({events: this.state.events.filter(event => event.id !== id)})
-      fetch(`${URL}/events/${id}`, {method: 'DELETE'}).then(response => response.json())
+      fetch(`${URL}/events/${id}`, {
+        method: 'DELETE'
+      })
+      .then(response => response.json())
     }
 
   render(){
@@ -162,7 +166,8 @@ class App extends React.Component{
           <Route path='/details/:id' render={(props) => <EventDetails {...props} 
             currentUser={this.state.currentUser} 
             deleteEvent={this.deleteEvent} 
-            updateEvent={this.updateEvent}/> } 
+            updateEvent={this.updateEvent}
+            currentUserEvents ={currentUserEvents}/> } 
           /> 
           <Route path='/events' render={(props) => <UserEvents {...props} 
             joinedEvents={this.state.joinedEvents} 
