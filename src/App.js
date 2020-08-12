@@ -24,7 +24,7 @@ class App extends React.Component{
       currentUser: null, 
       events: [],
       pastEvents: [],  
-      sort: "", 
+      search: "", 
       sorted: "", 
       users: [], 
       joinedEvents: []
@@ -46,7 +46,7 @@ class App extends React.Component{
     }
 
     searchPosts = (event) => {
-      this.setState({sort: event.target.value})
+      this.setState({search: event.target.value})
     }
 
     sortBy = (event) => {
@@ -158,7 +158,7 @@ class App extends React.Component{
     }
 
   render(){
-    let Events = this.state.events.filter(event => event.attributes.title.toLowerCase().includes(this.state.sort.toLowerCase()))
+    let Events = this.state.events.filter(event => event.attributes.title.toLowerCase().includes(this.state.search.toLowerCase()))
     this.findUsersEvents(this.state.events)
     this.sortOptions(Events)
     console.log('correct??', currentUserEvents)
@@ -186,7 +186,8 @@ class App extends React.Component{
           <Route path='/homepage' render={(props) => <Dashboard {...props} 
             event={Events} 
             submitFormHandler={this.submitFormHandler} 
-            searchPosts={this.searchPosts} 
+            searchPosts={this.searchPosts}
+            searchPhrase={this.state.search} 
             sortBy={this.sortBy}
             currentUser={this.state.currentUser}
             submitRSVP={this.submitRSVP}/>}

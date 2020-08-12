@@ -6,7 +6,11 @@ import Search from './Search'
 function Dashboard(props) {
     return ( 
             <div style={{marginTop: 30}}>
-                <Search searchPosts={props.searchPosts} sortBy={props.sortBy}/>
+                <Search 
+                searchPosts={props.searchPosts} 
+                sortBy={props.sortBy}
+                searchPhrase={props.searchPhrase}
+                />
                 <Form  
                 submitFormHandler={props.submitFormHandler}
                 />

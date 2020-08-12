@@ -6,6 +6,7 @@ class Search extends React.Component {
             <div className="ui large fluid icon input" style={{width: 1400, marginLeft: 15}}>
                 <input 
                 type="text" 
+                value={this.props.searchPhrase}
                 placeholder={"Search for a Post"} 
                 onChange={(event) => this.props.searchPosts(event)}
                 />
