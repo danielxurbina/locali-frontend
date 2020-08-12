@@ -1,8 +1,8 @@
-import React from 'react'
-import EventContainer from '../containers/EventContainer'
-import Form from './Form'
-import Search from './Search'
-import './Dashboard.css'
+import React from 'react';
+import EventContainer from '../containers/EventContainer';
+import Form from './Form';
+import Search from './Search';
+import './Dashboard.css';
 
 function Dashboard(props) {
     return ( 
@@ -23,6 +23,5 @@ function Dashboard(props) {
             </div>
     );
 }
-
 
 export default Dashboard;

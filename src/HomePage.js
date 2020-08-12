@@ -1,5 +1,5 @@
-import React from 'react'
-import {Header, About} from './components/'
+import React from 'react';
+import {Header, About} from './components/';
 
 function HomePage(){
     return ( 
@@ -9,4 +9,5 @@ function HomePage(){
         </div>
     ) 
 }
+
 export default HomePage;

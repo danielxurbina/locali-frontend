@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function UserEventsDisplay(props){
     
@@ -14,7 +14,7 @@ function UserEventsDisplay(props){
             <div className='ui four wide column'>
                 <div className='ui card'>
                     <div className ='image'>
-                        <img className="events-page-image" src={image_url} alt={title}/>
+                        <img className='events-page-image' src={image_url} alt={title}/>
                     </div>
                     <div className='card-body text-dark'>
                         <h4 className='card-title'>{title}</h4>
@@ -22,12 +22,12 @@ function UserEventsDisplay(props){
                         <p className='card-text text-secondary'>Date: {date}</p>
                         <p className='card-text text-secondary'>Located at: {location}</p>
                         <p className='card-text text-secondary'>{description}</p>
-                        <button className="ui basic button" onClick={() => findEvent(id)}>{props.currentDate < date ? "Remove RSVP" : "Remove Event"}</button>
+                        <button className='ui basic button' onClick={() => findEvent(id)}>{props.currentDate < date ? "Remove RSVP" : "Remove Event"}</button>
                     </div>
                 </div>
             </div>
             )    
 }
 
-export default UserEventsDisplay
+export default UserEventsDisplay;
 

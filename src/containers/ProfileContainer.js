@@ -1,6 +1,6 @@
-import React from 'react'
-import EventCard from './EventCard'
-import './ProfileContainer.css'
+import React from 'react';
+import EventCard from './EventCard';
+import './ProfileContainer.css';
 const header = {
     "Accept": "application/json",
     "Content-Type": "application/json"
@@ -11,11 +11,11 @@ class ProfileContainer extends React.Component {
 
     state = {
         isClicked: false, 
-        id: "", 
-        name: "", 
-        username: "", 
-        bio: "", 
-        image_url: ""
+        id: '', 
+        name: '', 
+        username: '', 
+        bio: '', 
+        image_url: ''
     }
 
     componentDidMount(){
@@ -76,7 +76,7 @@ class ProfileContainer extends React.Component {
 
     renderEditForm = () => {
         return(
-            <form className="ui form" onSubmit={(event) => this.handleSubmit(event)}>
+            <form className='ui form' onSubmit={(event) => this.handleSubmit(event)}>
                 <div className='field'>
                     <label>Name</label>
                     <input type='text' name='name' placeholder='Change Name' value={this.state.name} onChange={this.handleFormChange}></input>
@@ -102,7 +102,7 @@ class ProfileContainer extends React.Component {
         return(
             <>
             {this.renderUser()}
-            <div className="ui grid container">
+            <div className='ui grid container'>
                     {this.props.events.map(event => <EventCard event={event} key={event.id}/>)}
             </div>
             </>
@@ -110,5 +110,5 @@ class ProfileContainer extends React.Component {
     }
 }
 
-export default ProfileContainer
+export default ProfileContainer;
 

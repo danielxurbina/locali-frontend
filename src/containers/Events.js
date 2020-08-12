@@ -1,6 +1,6 @@
-import React from 'react'
-import "../styles.css";
-import "../components/Dashboard.css"
+import React from 'react';
+import '../styles.css';
+import '../components/Dashboard.css';
 
 
 const Events = (props) => {
@@ -24,4 +24,5 @@ const Events = (props) => {
     </div> 
     )
 }
-export default Events
+
+export default Events;

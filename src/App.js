@@ -2,17 +2,16 @@ import React from 'react';
 import './App.css';
 import { Route, Switch,} from 'react-router-dom';
 import { HomePage, Dashboard, NavBar, EventDetails, UserEvents, ProfilePage } from './components/';
-import { Login, SignUp} from './containers/'
-let currentUserEvents;
-const today = new Date()
-const year = today.getFullYear()
-const month = (today.getMonth() +1).toString().padStart(2, '0')
-const day = today.getDate().toString().padStart(2, '0')
-const currentDate = `${year}-${month}-${day}`
-const URL = "http://localhost:3000/"
+import { Login, SignUp} from './containers/';
+const today = new Date();
+const year = today.getFullYear();
+const month = (today.getMonth() +1).toString().padStart(2, '0');
+const day = today.getDate().toString().padStart(2, '0');
+const currentDate = `${year}-${month}-${day}`;
+const URL = 'http://localhost:3000/';
 const header = {
-    "Accept": "application/json",
-    "Content-Type": "application/json"
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
 }
 
 //To Do
@@ -24,8 +23,8 @@ class App extends React.Component{
       currentUser: null, 
       events: [],
       pastEvents: [],  
-      search: "", 
-      sorted: "", 
+      search: '', 
+      sorted: '', 
       users: [], 
       joinedEvents: []
     }
@@ -77,16 +76,16 @@ class App extends React.Component{
     }
 
     sortOptions = (Events) => {
-      if(this.state.sorted === "All"){
+      if(this.state.sorted === 'All'){
         Events.sort((a, b) => a.attributes.user.created_at < b.attributes.user.created_at ? -1 : 1)
       }
-      else if(this.state.sorted === "Title"){
+      else if(this.state.sorted === 'Title'){
         Events.sort((a,b) => a.attributes.title.localeCompare(b.attributes.title))
       }
-      else if(this.state.sorted === "Price"){
+      else if(this.state.sorted === 'Price'){
         Events.sort((a, b) => a.attributes.price > b.attributes.price ? -1 : 1)
       }
-      else if(this.state.sorted === "Date"){
+      else if(this.state.sorted === 'Date'){
         Events.sort((a,b) => a.attributes.date > b.attributes.date ? 1 : -1)
       }
     }
@@ -98,7 +97,9 @@ class App extends React.Component{
       .then(eventOBJ => 
             fetch(`${URL}/joined_events/${eventOBJ.id}`)
             .then(response => response.json())
-            .then(rsvp => this.setState({joinedEvents: [...this.state.joinedEvents, rsvp.data]}))
+            .then(rsvp => this.setState({
+              joinedEvents: [...this.state.joinedEvents, rsvp.data]
+            }))
           )
     }
 
@@ -150,20 +151,11 @@ class App extends React.Component{
       .then(response => response.json())
     }
 
-    findUsersEvents = (events) => {
-      if(this.state.currentUser){
-      console.log(events.map(data => data.attributes).filter(event => parseInt(event.user.id) === parseInt(this.state.currentUser.id)))
-      currentUserEvents = events.map(data => data.attributes).filter(event => parseInt(event.user.id) === parseInt(this.state.currentUser.id))
-      }
-    }
-
   render(){
     let Events = this.state.events.filter(event => event.attributes.title.toLowerCase().includes(this.state.search.toLowerCase()))
-    this.findUsersEvents(this.state.events)
     this.sortOptions(Events)
-    console.log('correct??', currentUserEvents)
     return (
-      <div className="App">
+      <div className='App'>
         <NavBar currentUser={this.state.currentUser} handleLogout={this.handleLogout}/>
         <Switch >
           <Route path='/profile/:id' render={(props) => <ProfilePage {...props} 
@@ -193,8 +185,8 @@ class App extends React.Component{
             submitRSVP={this.submitRSVP}/>}
           /> 
           <Route path='/signup' component={SignUp} /> 
-          <Route exact path="/login" render={(props) => <Login {...props} setCurrentUser={this.setCurrentUser}/>}/> 
-          <Route exact path="/" component={HomePage} /> 
+          <Route exact path='/login' render={(props) => <Login {...props} setCurrentUser={this.setCurrentUser}/>}/> 
+          <Route exact path='/' component={HomePage} /> 
         </Switch>
       </div>
     );

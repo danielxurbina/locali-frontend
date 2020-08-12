@@ -1,5 +1,5 @@
-import React from 'react'
-import Events from './Events'
+import React from 'react';
+import Events from './Events';
 
 
 function EventContainer(props){
@@ -9,5 +9,6 @@ function EventContainer(props){
         </div>
     )
 }
-export default EventContainer
+
+export default EventContainer;
 

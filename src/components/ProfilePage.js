@@ -1,5 +1,5 @@
-import React from 'react'
-import ProfileContainer from '../containers/ProfileContainer'
+import React from 'react';
+import ProfileContainer from '../containers/ProfileContainer';
 
 function ProfilePage(props){
     let filteredEvents = props.events.filter(event => parseInt(event.attributes.user.id) === parseInt(props.currentUser.id))

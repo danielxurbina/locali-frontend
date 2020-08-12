@@ -1,5 +1,5 @@
-import React from 'react'
-import './EventDetails.css'
+import React from 'react';
+import './EventDetails.css';
 const eventsURL = "http://localhost:3000/events";
 
 
@@ -65,27 +65,27 @@ class EventDetails extends React.Component {
                     }}>
                     <div className='field'>
                         <label>Date</label>
-                        <input type="date" name="date" value={date} onChange={(event) => this.handleFormChange(event)}/>
+                        <input type='date' name='date' value={date} onChange={(event) => this.handleFormChange(event)}/>
                     </div>
                     <div className='field'>
                         <label>Title</label>
-                        <input type="text" name="title" placeholder="Title" value={title} onChange={(event) => this.handleFormChange(event)}/>
+                        <input type='text' name='title' placeholder='Title' value={title} onChange={(event) => this.handleFormChange(event)}/>
                     </div>
                     <div className='field'>
                         <label>Location</label>
-                        <input type="text" name="location" placeholder="Location" value={location} onChange={(event) => this.handleFormChange(event)}/>
+                        <input type='text' name='location' placeholder='Location' value={location} onChange={(event) => this.handleFormChange(event)}/>
                     </div>
                     <div className='field'>
                         <label>Description</label>
-                        <input type="text" name="description" placeholder="Description" value={description} onChange={(event) => this.handleFormChange(event)}/>
+                        <input type='text' name='description' placeholder='Description' value={description} onChange={(event) => this.handleFormChange(event)}/>
                     </div>
                     <div className='field'>
                         <label>Image</label>
-                        <input type="text" name="imageURL" placeholder="ImageURL" value={image_url} onChange={(event) => this.handleFormChange(event)}/>
+                        <input type='text' name='imageURL' placeholder='ImageURL' value={image_url} onChange={(event) => this.handleFormChange(event)}/>
                     </div>
                     <div className='field'>
                         <label>Price</label>
-                        <input type="number" name="price" placeholder="Price" value={price} onChange={(event) => this.handleFormChange(event)}/>
+                        <input type='number' name='price' placeholder='Price' value={price} onChange={(event) => this.handleFormChange(event)}/>
                     </div>
                     <button className='ui button'>Submit Changes</button>
                 </form>
@@ -99,8 +99,8 @@ class EventDetails extends React.Component {
         const { date, description, image_url, price, title, location} = this.state
         const {name} = this.state.event.attributes.user
         return (
-            <div className="event-details-page">
-                <div className="page-info">
+            <div className='event-details-page'>
+                <div className='page-info'>
                 {this.state.isClicked ? this.renderEditForm() 
                 :
                 <>
@@ -114,14 +114,14 @@ class EventDetails extends React.Component {
                     </section>
                 <div className='buttons'>
                     <button className='ui button' onClick={this.toggleForm}>Edit Event</button>
-                    <button className='ui button' value="Delete" onClick={() => {this.props.deleteEvent(this.state.eventId); this.props.history.push('/profile/:id')}}>Delete Event</button>
+                    <button className='ui button' value='Delete' onClick={() => {this.props.deleteEvent(this.state.eventId); this.props.history.push('/profile/:id')}}>Delete Event</button>
                     <button className='ui button' onClick={() => this.props.history.push('/homepage')}>Go Back To Homepage</button>
                 </div>
                 </>
                 }
                 </div>
-                <div className="image-container">
-                    <img className="events-photo" src={image_url} alt={title}/>
+                <div className='image-container'>
+                    <img className='events-photo' src={image_url} alt={title}/>
                 </div>
             </div>
         )       

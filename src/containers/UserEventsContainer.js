@@ -1,5 +1,5 @@
-import React from 'react'
-import UserEventDisplay from './UserEventsDisplay'
+import React from 'react';
+import UserEventDisplay from './UserEventsDisplay';
 import './UserEvents.css';
 
 function UserEventsContainer(props){
@@ -9,10 +9,10 @@ function UserEventsContainer(props){
     let previous = filteredEvents.filter(event => event.event.date < props.currentDate)
     return (
         <>
-            <div className="events-banner">
+            <div className='events-banner'>
                 <h1>Upcoming Events</h1>
             </div>
-            <div className="ui grid container">
+            <div className='ui grid container'>
                 {upcoming.map((object, index) => <UserEventDisplay 
                 event={object.event} key={index} 
                 currentUser={props.currentUser} 
@@ -20,10 +20,10 @@ function UserEventsContainer(props){
                 joinedEvents={props.joinedEvents} 
                 currentDate={props.currentDate}/>)}
             </div>
-            <div className="attended-banner">
+            <div className='attended-banner'>
                 <h1>Attended Events</h1>
             </div>
-            <div className="ui grid container">
+            <div className='ui grid container'>
                 {previous.map((object, index) => <UserEventDisplay 
                 event={object.event} key={index}
                 currentUser={props.currentUser} 
@@ -34,5 +34,6 @@ function UserEventsContainer(props){
         </>
     );
 }
+
 export default UserEventsContainer;
 

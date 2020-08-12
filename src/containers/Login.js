@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import "./SignUp.css";
 
 class Login extends React.Component {
     state = {
-      username: "", 
-      password: ""
+      username: '', 
+      password: ''
     }
 
     handleLogin = (event) => {
@@ -17,7 +17,7 @@ class Login extends React.Component {
 
     submitLoginHandler = (event, username, password) => {
         event.preventDefault()
-        fetch("http://localhost:3000/users")
+        fetch('http://localhost:3000/users')
         .then(response => response.json())
         .then(userOBJ => userOBJ.data.filter(user => {
           if(user.attributes.username === username && user.attributes.password === password){
@@ -29,22 +29,22 @@ class Login extends React.Component {
 
     render(){
         return( 
-          <div className="SignUpLayout">
-            <div className="LogInImg"/>
-            <div className="SignUpForm">
+          <div className='SignUpLayout'>
+            <div className='LogInImg'/>
+            <div className='SignUpForm'>
               <div className='form-container'>
               <h3>
                 <b>Sign In</b>
               </h3>
               <form onSubmit={(event) => this.submitLoginHandler(event, this.state.username, this.state.password)}>
                 <label>Username</label>
-                <input className="SignUpTextBox" type="text" name="username" placeholder="Username" value={this.state.username} onChange={(event) => this.handleLogin(event)}/>
+                <input className='SignUpTextBox' type='text' name='username' placeholder='Username' value={this.state.username} onChange={(event) => this.handleLogin(event)}/>
                 <label>Password</label>
-                <input type="password" className="SignUpTextBox" name="password" placeholder="Password" value={this.state.password} onChange={(event) => this.handlePassword(event)}/> 
+                <input type='password' className='SignUpTextBox' name='password' placeholder='Password' value={this.state.password} onChange={(event) => this.handlePassword(event)}/> 
                 <div className='auth-buttons'>
                   <br></br>
-                <button className="btnSignUp" type="submit" value="Submit">Sign In</button>
-                <button className="btnSignUp" type="sign up" value="Sign Up" onClick={() => this.props.history.push('/signup')}>Sign Up</button>
+                <button className='btnSignUp' type='submit' value='Submit'>Sign In</button>
+                <button className='btnSignUp' type='sign up' value='Sign Up' onClick={() => this.props.history.push('/signup')}>Sign Up</button>
                 </div>
               </form>
             </div>
@@ -53,7 +53,8 @@ class Login extends React.Component {
         )   
     }
 }
-export default Login
+
+export default Login;
 
 
 

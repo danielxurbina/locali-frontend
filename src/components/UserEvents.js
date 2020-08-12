@@ -1,5 +1,5 @@
-import React from 'react'
-import UserEventsContainer from '../containers/UserEventsContainer'
+import React from 'react';
+import UserEventsContainer from '../containers/UserEventsContainer';
 
 function UserEvents(props) {
     return ( 
@@ -13,4 +13,5 @@ function UserEvents(props) {
         </div>
     );    
 }
+
 export default UserEvents;
