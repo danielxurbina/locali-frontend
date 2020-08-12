@@ -2,10 +2,11 @@ import React from 'react'
 import EventContainer from '../containers/EventContainer'
 import Form from './Form'
 import Search from './Search'
+import './Dashboard.css'
 
 function Dashboard(props) {
     return ( 
-            <div style={{marginTop: 30}}>
+            <div className='dashboard-container'>
                 <Search 
                 searchPosts={props.searchPosts} 
                 sortBy={props.sortBy}
