@@ -13,13 +13,14 @@ class SignUp extends React.Component {
                 </h3>
                 <form>
                   <label>Name</label>
-                  <input type='text' className='SignUpTextBox' name='name' value={null} placeholder='Name'/>
+                  <input type='text' className='SignUpTextBox' name='name' autoFocus value={null} placeholder='Name'/>
                   <label>ImageURL</label>
                   <input type='text' className='SignUpTextBox' name='image' value={null} placeholder='Profile Image'/>
                   <label>Username</label>
                   <input className='SignUpTextBox' type='text' name='username' value={null} placeholder='Username'/>
                   <label>Password</label>
                   <input type='password' className='SignUpTextBox' name='password' value={null} placeholder='Password'/> 
+                  <br></br>
                   <br></br>
                   <button className='btnSignUp' type='submit' value='Submit'>Sign In</button>
                 </form>

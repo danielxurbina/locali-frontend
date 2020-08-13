@@ -38,7 +38,7 @@ class Login extends React.Component {
               </h3>
               <form onSubmit={(event) => this.submitLoginHandler(event, this.state.username, this.state.password)}>
                 <label>Username</label>
-                <input className='SignUpTextBox' type='text' name='username' placeholder='Username' value={this.state.username} onChange={(event) => this.handleLogin(event)}/>
+                <input className='SignUpTextBox' type='text' name='username' placeholder='Username' autoFocus value={this.state.username} onChange={(event) => this.handleLogin(event)}/>
                 <label>Password</label>
                 <input type='password' className='SignUpTextBox' name='password' placeholder='Password' value={this.state.password} onChange={(event) => this.handlePassword(event)}/> 
                 <div className='auth-buttons'>
