@@ -34,7 +34,7 @@ class Login extends React.Component {
             <div className='SignUpForm'>
               <div className='form-container'>
               <h3>
-                <b>Sign In</b>
+                <b>Log In</b>
               </h3>
               <form onSubmit={(event) => this.submitLoginHandler(event, this.state.username, this.state.password)}>
                 <label>Username</label>
@@ -43,7 +43,7 @@ class Login extends React.Component {
                 <input type='password' className='SignUpTextBox' name='password' placeholder='Password' value={this.state.password} onChange={(event) => this.handlePassword(event)}/> 
                 <div className='auth-buttons'>
                   <br></br>
-                <button className='btnSignUp' type='submit' value='Submit'>Sign In</button>
+                <button className='btnSignUp' type='submit' value='Submit'>Log In</button>
                 <button className='btnSignUp' type='sign up' value='Sign Up' onClick={() => this.props.history.push('/signup')}>Sign Up</button>
                 </div>
               </form>
