@@ -61,7 +61,7 @@ class ProfileContainer extends React.Component {
             <div className='profile'>
                 <div className='info'>
                 <img className='pic' src={image_url} alt={name}></img>
-                <p>{name}</p>
+                <h3>{name}</h3>
                 <p>@{username}</p>
                 <p>{bio}</p>
                 <br></br>

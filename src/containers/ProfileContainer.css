@@ -32,3 +32,15 @@
   width: 60vw;
 }
 
+.info h3 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff
+}
+
+.info p {
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff
+}
+
