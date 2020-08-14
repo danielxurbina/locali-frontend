@@ -18,7 +18,7 @@ const Events = (props) => {
                 <p>Date: {date}</p>
                 <p>Located at: {location}</p>
                 <p>{description}</p>
-                <button className="ui basic button" onClick={() => props.submitRSVP(props.event.id)}>Click To RSVP</button>
+                <button className="ui basic button" onClick={() => props.submitRSVP(props.event.id, title)}>Click To RSVP</button>
             </div>
         </div>
     </div> 

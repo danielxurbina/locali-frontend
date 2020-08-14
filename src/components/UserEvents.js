@@ -1,9 +1,10 @@
 import React from 'react';
 import UserEventsContainer from '../containers/UserEventsContainer';
+import '../containers/UserEvents.css';
 
 function UserEvents(props) {
     return ( 
-        <div>
+        <div className='user-events'>
             <UserEventsContainer 
             joinedEvents={props.joinedEvents} 
             currentUser={props.currentUser} 

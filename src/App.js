@@ -54,7 +54,9 @@ class App extends React.Component{
 
     submitFormHandler = (event, date, title, location, description, imageURL, price) => {
       event.preventDefault()
-      console.log(date, title, location, description, imageURL, price )
+      if(date.length !== 10){
+        alert('Please enter a valid date')
+      } else {
       let newPostOBJ = {
           user_id: this.state.currentUser.id, 
           location: location, 
@@ -70,9 +72,10 @@ class App extends React.Component{
           fetch(`${URL}/events/${eventOBJ.id}`)
           .then(response => response.json())
           .then(event => this.setState({
-              events: [...this.state.events, event.data]
+              events: [event.data, ...this.state.events]
           }))
       )
+      }
     }
 
     sortOptions = (Events) => {
@@ -90,7 +93,8 @@ class App extends React.Component{
       }
     }
 
-    submitRSVP = (id) => {
+    submitRSVP = (id, title) => {
+      alert(`Great Choice ${this.state.currentUser.attributes.name}! You have RSVP'ed to ${title}`)
       let rsvpOBJ = {user_id: this.state.currentUser.id, event_id: id}
       fetch(`${URL}/joined_events`, {method: "POST", headers: header, body: JSON.stringify(rsvpOBJ)})
       .then(response => response.json())
@@ -152,6 +156,7 @@ class App extends React.Component{
     }
 
   render(){
+    console.log("date", typeof currentDate.length)
     let Events = this.state.events.filter(event => event.attributes.title.toLowerCase().includes(this.state.search.toLowerCase()))
     this.sortOptions(Events)
     return (

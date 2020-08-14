@@ -81,7 +81,7 @@ class EventDetails extends React.Component {
                     </div>
                     <div className='field'>
                         <label>Image</label>
-                        <input type='text' name='imageURL' placeholder='ImageURL' value={image_url} onChange={(event) => this.handleFormChange(event)}/>
+                        <input type='text' name='image_url' placeholder='image_url' value={image_url} onChange={(event) => this.handleFormChange(event)}/>
                     </div>
                     <div className='field'>
                         <label>Price</label>
