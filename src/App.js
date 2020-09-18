@@ -156,7 +156,6 @@ class App extends React.Component{
     }
 
   render(){
-    console.log("date", typeof currentDate.length)
     let Events = this.state.events.filter(event => event.attributes.title.toLowerCase().includes(this.state.search.toLowerCase()))
     this.sortOptions(Events)
     return (
